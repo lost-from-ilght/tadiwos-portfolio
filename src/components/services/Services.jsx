@@ -33,16 +33,7 @@ const TAB_DATA = [
       </ul>
     ),
   },
-  {
-    title: "Certifications",
-    id: "certifications",
-    content: (
-      <ul className="list-disc pl-2">
-        <li>AWS Cloud Practitioner</li>
-        <li></li>
-      </ul>
-    ),
-  },
+  
 ];
 
 const Services = () => {
@@ -115,13 +106,7 @@ const Services = () => {
               {" "}
               Education{" "}
             </TabButton>
-            <TabButton
-              selectTab={() => handleTabChange("certifications")}
-              active={tab === "certifications"}
-            >
-              {" "}
-              Certifications{" "}
-            </TabButton>
+           
           </div>
           <div className="mt-8">
             {TAB_DATA.find((t) => t.id === tab).content}
