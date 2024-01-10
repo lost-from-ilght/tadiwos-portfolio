@@ -84,10 +84,10 @@ const Services = () => {
         </div>
         <div className="md:mt-0 text-left flex flex-col h-full mt-12">
           <p className="text-base lg:text-lg">
-         A brief intro, who am I?
+         A brief intro, who am I? <br>
 I am an independent full stack developer, UI/UX designer and creator based in Addis Abeba, Ethiopia.
 I specialize in crafting elevated, intuitive, and minimalistic designs for startups and small businesses to help them stand out in the digital landscape with a powerful impact. 😎
-When I am not developing or designing, I enjoy reading that talk about programing
+When I am not developing or designing, I enjoy reading books that talk about programing
 
           </p>
           <div className="flex flex-row gap-2 justify-start mt-8">
