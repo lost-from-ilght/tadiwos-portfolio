@@ -84,12 +84,11 @@ const Services = () => {
         </div>
         <div className="md:mt-0 text-left flex flex-col h-full mt-12">
           <p className="text-base lg:text-lg">
-          I am a Passionate software engineer experienced in React, Node.js, 
-          and MongoDB.  
-          Love crafting clean code and collaborating with 
-          teams to create delightful experiences, I strongly believe that
-          I could improve and make a huge contribution to your projects or work
-           space if you overlook my coffee☕ addiction
+         A brief intro, who am I?
+I am an independent full stack developer, UI/UX designer and creator based in Addis Abeba, Ethiopia.
+I specialize in crafting elevated, intuitive, and minimalistic designs for startups and small businesses to help them stand out in the digital landscape with a powerful impact. 😎
+When I am not developing or designing, I enjoy reading that talk about programing
+
           </p>
           <div className="flex flex-row gap-2 justify-start mt-8">
             <TabButton
