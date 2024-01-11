@@ -87,7 +87,7 @@ const Services = () => {
          A brief intro, who am I? <br>
 I am an independent full stack developer, UI/UX designer and creator based in Addis Abeba, Ethiopia.
 I specialize in crafting elevated, intuitive, and minimalistic designs for startups and small businesses to help them stand out in the digital landscape with a powerful impact. 😎
-When I am not developing or designing, I enjoy reading books that talk about programing
+When I am not developing or designing, I enjoy reading books that talk about programing and listening to music
 
           </p>
           <div className="flex flex-row gap-2 justify-start mt-8">
