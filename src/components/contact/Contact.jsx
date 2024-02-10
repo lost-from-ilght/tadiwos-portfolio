@@ -55,7 +55,7 @@ const Contact = () => {
   return (
     <motion.div
       ref={ref}
-      className="contact"
+      className="contact "
       variants={variants}
       initial="initial"
       whileInView="animate"
@@ -77,7 +77,7 @@ const Contact = () => {
       </motion.div>
       <div className="formContainer flex justify-center items-center w-full">
         <motion.div
-          className="phoneSvg "
+          className="phoneSvg"
           initial={{ opacity: 1 }}
           whileInView={{ opacity: 0 }}
           transition={{ delay: 3, duration: 1 }}
@@ -106,7 +106,7 @@ const Contact = () => {
           </svg>
         </motion.div>
         <motion.form 
-        className=" w-full"
+        className="w-full"
           ref={formRef}
           onSubmit={sendEmail}
           initial={{ opacity: 0 }}

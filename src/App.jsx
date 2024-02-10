@@ -26,7 +26,7 @@ const App = () => {
         <Parallax type="portfolio" />
       </section>
       <Portfolio />
-      <section id="Contact">
+      <section id="Contact" className=" h-full">
         <Contact />
       </section>
       {/* Framer Motion Crash Course */}

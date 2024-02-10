@@ -75,10 +75,32 @@ const Single = ({ item }) => {
           <motion.div className="textContainer" style={{y}}>
             <h2>{item.title}</h2>
             <p>{item.desc}</p>
-            <button className=" text-white"><a href={item.link}>See live</a></button>
+            <button className=" text-white"><a 
+            target="blank"
+            type = "button"
+            data-te-ripple-init
+            data-te-ripple-color="light"
+            href={item.link}>
+              See live/code</a></button>
           </motion.div>
         </div>
       </div>
+      {/* <div className="wrapper">
+          <div className="imageContainer" ref={ref}>
+            <img className=" rounded-md" src={"/tindaa.png"} alt="" />
+          </div>
+          <motion.div className="textContainer" style={{y}}>
+            <h2>{"Tindaa"}</h2>
+            <p>{"a dating app made with flutter and firebase it has like, favorite, and view functionality"}</p>
+            <button className=" text-white"><a 
+            type = "button"
+            data-te-ripple-init
+            data-te-ripple-color="light"
+            href="">
+              See live/code</a></button>
+          </motion.div>
+        </div> */}
+    
     </section>
   );
 };

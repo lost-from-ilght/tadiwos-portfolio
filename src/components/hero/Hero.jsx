@@ -52,13 +52,13 @@ const Hero = () => {
             Website developer
           </motion.h1>
           <motion.div variants={textVariants} className="buttons z-10">
-            <motion.button variants={textVariants}>
+            <motion.button className=" border border-y-white" variants={textVariants}>
              <a href="#Contact">
              Hire me
              </a> 
             </motion.button>
-            <motion.button variants={textVariants}>
-            <a href="/images/myw3schoolsimage.jpg" download> Download CV </a> </motion.button>
+            <motion.button className=" bg-purple-600 " variants={textVariants}>
+            <a href="/TadiwosAnegagregn.pdf.docx" download> Download CV </a> </motion.button>
           </motion.div>
           <motion.img
             variants={textVariants}
