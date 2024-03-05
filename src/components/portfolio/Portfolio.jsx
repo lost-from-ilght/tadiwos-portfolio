@@ -27,17 +27,17 @@ const items = [
   },
   {
     id: 4,
-    title: "Blog-site",
-    img: "/blog.png",
-    link:"https://bloghub-lcpx.onrender.com/",
-    desc: "Stay up-to-date with the latest trends, gain valuable knowledge, and indulge in captivating narratives. Join our vibrant community of readers and let our blog be your go-to source for information, entertainment, and discovery.",
+    title: "Mereja-Bet",
+    img: "/mereja.png",
+    link:"https://mereja-virid.vercel.app/",
+    desc: "Mereja-Bet is a centralized platform that aggregates data from diverse Telegram channels, providing easy access to categorized information. Using Python, I developed an advanced data scraping mechanism to collect and categorize the data. Users can quickly find news articles or job postings by selecting the relevant category. This streamlined approach saves time and effort. The technology stack includes Python for data scraping, Firebase for storage, React for the user interface, and Node.js for data retrieval and delivery.",
   },
   {
     id: 5,
     title: "Portfolio-Website Automation",
     img: "/porti.png",
     link:"https://beletedesigngallery.onrender.com/",
-    desc: "I helped a client with backend(email function) and hosting",
+    desc: "I helped a client with backend(email functionality) , admin page and  hosting",
   },
   {
     id: 6,
@@ -121,7 +121,7 @@ const Portfolio = () => {
   return (
     <div className="portfolio" ref={ref}>
       <div className="progress">
-        <h1>Featured Works</h1>
+        <h1>Projects/Works done</h1>
         <motion.div style={{ scaleX }} className="progressBar"></motion.div>
       </div>
       {items.map((item) => (
