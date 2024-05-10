@@ -49,8 +49,9 @@ const Hero = () => {
         >
           <motion.h2 variants={textVariants}>TADIWOS ANEGAGREGN</motion.h2>
           <motion.h1 variants={textVariants}>
-            Website developer
+            Fullstack developer
           </motion.h1>
+          <p>2024 Startup Ethiopia Hackathon Winner🥇</p>
           <motion.div variants={textVariants} className="buttons z-10">
             <motion.button className=" border border-y-white" variants={textVariants}>
              <a href="#Contact">

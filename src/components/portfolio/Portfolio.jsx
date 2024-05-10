@@ -53,7 +53,20 @@ const items = [
     link:"",
     desc: "Selam is a form web site i did for a client, it has an admin page with full CRUD functionality ",
   },
-  
+  {
+    id: 8,
+    title: "This or That",
+    img: "/1711522929546.jpg",
+    link:"https://this-or-that-mrcha-za9t.vercel.app/",
+    desc: "what it does is prompt you with two choices based on the category you choose and shows you the percentage of what other people chose.",
+  },
+  {
+    id: 9,
+    title: "2024 Startup Ethiopia Hackathon winner",
+    img: "/togetha.jpg",
+    link:"https://www.linkedin.com/posts/tadiwos-anegagergn-951b25256_alettechnologies-startupethiopiahackathon-activity-7194592861428797441-67KN?utm_source=share&utm_medium=member_desktop",
+    desc: "Me and my team won first place at the Startup Ethiopia Hackathon. ",
+  },
 ];
 
 const Single = ({ item }) => {
