@@ -41,10 +41,10 @@ const items = [
   },
   {
     id: 6,
-    title: "E-suk",
-    img: "/esuk.png",
-    link:"https://github.com/Tadi-san/E-suk",
-    desc: "E-suk is a full MERN stack web app i made with all full functionalities working, using tailwind ",
+    title: "Gebeya Market",
+    img: "/gebeya.png",
+    link:"https://gebeya-market.vercel.app/",
+    desc: "Gebeya is a full MERN stack web app i made with all full functionalities not finished yet, but to show how minimalistic shop sites are better than clusterd sites using tailwind ",
   },
   {
     id: 7,
