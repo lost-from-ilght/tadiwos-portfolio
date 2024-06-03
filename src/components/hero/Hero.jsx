@@ -59,7 +59,7 @@ const Hero = () => {
              </a> 
             </motion.button>
             <motion.button className=" bg-purple-600 " variants={textVariants}>
-            <a href="/TadiwosAnegagregn.pdf.docx" download> Download CV </a> </motion.button>
+            <a href="/TadiwosAnegagregn.pdf" download> Download CV </a> </motion.button>
           </motion.div>
           <motion.img
             variants={textVariants}
