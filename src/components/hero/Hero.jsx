@@ -179,16 +179,17 @@ const Hero = () => {
 
                   {/* Profile Image & Avatar with Glowing Badge */}
                   <div className="relative my-6 flex justify-center">
-                    <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden border-2 border-indigo-500/40 shadow-glow">
+                    <div className="relative w-full max-w-[320px] h-60 sm:h-64 rounded-2xl overflow-hidden border-2 border-indigo-500/40 shadow-glow">
                       <img
                         src={personalInfo.avatar}
                         alt={personalInfo.name}
-                        className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-dark-950/85 via-transparent to-transparent" />
                       <div className="absolute bottom-2 left-2 right-2 text-center">
-                        <span className="text-xs font-medium text-white/90 bg-dark-900/80 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 inline-block">
-                          Full-Stack & ML Systems
+                        <span className="text-xs font-semibold text-white/95 bg-dark-900/90 backdrop-blur-md px-3 py-1 rounded-full border border-indigo-500/30 inline-flex items-center gap-1.5 shadow-sm">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          1st Prize Winner • Hackathon 2024
                         </span>
                       </div>
                     </div>

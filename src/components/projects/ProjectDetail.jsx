@@ -47,9 +47,9 @@ const ProjectDetail = () => {
 
   const screenshots = project.screenshots && project.screenshots.length > 0
     ? project.screenshots
-    : [{ url: project.image, title: project.title, caption: project.description }];
+    : project.image ? [{ url: project.image, title: project.title, caption: project.description }] : [];
 
-  const currentScreenshot = screenshots[activeScreenshotIdx] || screenshots[0];
+  const currentScreenshot = screenshots[activeScreenshotIdx] || screenshots[0] || null;
 
   const handleShare = () => {
     const url = window.location.href;
@@ -145,6 +145,13 @@ const ProjectDetail = () => {
               </span>
             )}
 
+            {project.vpnRequired && (
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1.5 shadow-sm">
+                <span>🇬🇧</span>
+                UK VPN Required to Access Live
+              </span>
+            )}
+
             {project.timeline && (
               <span className="text-xs font-mono px-3 py-1 rounded-full bg-dark-900 text-slate-400 border border-white/10 flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5" />
@@ -169,140 +176,170 @@ const ProjectDetail = () => {
           )}
         </motion.div>
 
-        {/* Interactive Screenshot Showcase */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-16"
-        >
-          <div className="rounded-3xl border border-white/10 bg-dark-900/90 shadow-2xl overflow-hidden backdrop-blur-xl">
-            
-            {/* Browser Header Bar */}
-            <div className="px-4 sm:px-6 py-3.5 bg-dark-950/90 border-b border-white/10 flex items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
-                <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block" />
-                <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
-              </div>
+        {/* Interactive Screenshot Showcase or Live Platform Showcase */}
+        {screenshots.length > 0 && currentScreenshot ? (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mb-16"
+          >
+            <div className="rounded-3xl border border-white/10 bg-dark-900/90 shadow-2xl overflow-hidden backdrop-blur-xl">
+              
+              {/* Browser Header Bar */}
+              <div className="px-4 sm:px-6 py-3.5 bg-dark-950/90 border-b border-white/10 flex items-center justify-between gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
+                  <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block" />
+                  <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
+                </div>
 
-              {/* URL Bar Mockup */}
-              <div className="flex-1 max-w-md mx-auto hidden sm:flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-dark-900/80 border border-white/10 text-xs font-mono text-slate-300">
-                <Lock className="w-3 h-3 text-emerald-400" />
-                <span className="truncate">
-                  {project.links && project.links[0] ? project.links[0].url : `https://${project.id}.app`}
-                </span>
-              </div>
+                {/* URL Bar Mockup */}
+                <div className="flex-1 max-w-md mx-auto hidden sm:flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-dark-900/80 border border-white/10 text-xs font-mono text-slate-300">
+                  <Lock className="w-3 h-3 text-emerald-400" />
+                  <span className="truncate">
+                    {project.links && project.links[0] ? project.links[0].url : `https://${project.id}.app`}
+                  </span>
+                </div>
 
-              {/* Zoom & Direct Visit */}
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setLightboxOpen(true)}
-                  className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
-                  title="Expand Fullscreen"
-                >
-                  <Maximize2 className="w-4 h-4" />
-                </button>
-                {project.links && project.links[0] && (
-                  <a
-                    href={project.links[0].url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 rounded-lg text-slate-400 hover:text-cyan-400 hover:bg-white/5 transition-colors"
-                    title="Open in new tab"
+                {/* Zoom & Direct Visit */}
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setLightboxOpen(true)}
+                    className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
+                    title="Expand Fullscreen"
                   >
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
+                    <Maximize2 className="w-4 h-4" />
+                  </button>
+                  {project.links && project.links[0] && (
+                    <a
+                      href={project.links[0].url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-1.5 rounded-lg text-slate-400 hover:text-cyan-400 hover:bg-white/5 transition-colors"
+                      title="Open in new tab"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              {/* Main Screenshot Display */}
+              <div className="relative group bg-dark-950/60 overflow-hidden min-h-[300px] sm:min-h-[480px] lg:min-h-[580px] flex items-center justify-center">
+                <img
+                  src={currentScreenshot.url}
+                  alt={currentScreenshot.title || project.title}
+                  className="w-full h-auto max-h-[700px] object-contain cursor-zoom-in transition-transform duration-300 group-hover:scale-[1.01]"
+                  onClick={() => setLightboxOpen(true)}
+                />
+
+                {/* Overlay hover prompt */}
+                <div
+                  onClick={() => setLightboxOpen(true)}
+                  className="absolute inset-0 bg-dark-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center cursor-zoom-in pointer-events-none"
+                >
+                  <span className="px-4 py-2 rounded-xl bg-dark-900/90 text-white font-medium text-sm border border-white/20 backdrop-blur-md flex items-center gap-2 shadow-glow">
+                    <Eye className="w-4 h-4 text-cyan-400" />
+                    Click to Expand High-Resolution View
+                  </span>
+                </div>
+              </div>
+
+              {/* Caption & Screenshot Selector Bar */}
+              <div className="p-4 sm:p-6 bg-dark-900/90 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                  <h4 className="text-white font-bold text-sm sm:text-base flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                    {currentScreenshot.title || "Production Screenshot"}
+                  </h4>
+                  <p className="text-slate-400 text-xs sm:text-sm mt-0.5 max-w-2xl">
+                    {currentScreenshot.caption || project.description}
+                  </p>
+                </div>
+
+                {/* Multi-screenshot tabs / pills */}
+                {screenshots.length > 1 && (
+                  <div className="flex items-center gap-2 self-stretch sm:self-auto overflow-x-auto pb-1 sm:pb-0">
+                    {screenshots.map((s, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setActiveScreenshotIdx(idx)}
+                        className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+                          activeScreenshotIdx === idx
+                            ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-glow border border-indigo-400/30"
+                            : "bg-dark-850 text-slate-400 hover:text-white hover:bg-dark-800 border border-white/5"
+                        }`}
+                      >
+                        {s.title ? s.title.split("—")[0].trim() : `Screen ${idx + 1}`}
+                      </button>
+                    ))}
+                  </div>
                 )}
               </div>
-            </div>
 
-            {/* Main Screenshot Display */}
-            <div className="relative group bg-dark-950/60 overflow-hidden min-h-[300px] sm:min-h-[480px] lg:min-h-[580px] flex items-center justify-center">
-              <img
-                src={currentScreenshot.url}
-                alt={currentScreenshot.title || project.title}
-                className="w-full h-auto max-h-[700px] object-contain cursor-zoom-in transition-transform duration-300 group-hover:scale-[1.01]"
-                onClick={() => setLightboxOpen(true)}
-              />
-
-              {/* Overlay hover prompt */}
-              <div
-                onClick={() => setLightboxOpen(true)}
-                className="absolute inset-0 bg-dark-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center cursor-zoom-in pointer-events-none"
-              >
-                <span className="px-4 py-2 rounded-xl bg-dark-900/90 text-white font-medium text-sm border border-white/20 backdrop-blur-md flex items-center gap-2 shadow-glow">
-                  <Eye className="w-4 h-4 text-cyan-400" />
-                  Click to Expand High-Resolution View
-                </span>
-              </div>
-            </div>
-
-            {/* Caption & Screenshot Selector Bar */}
-            <div className="p-4 sm:p-6 bg-dark-900/90 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div>
-                <h4 className="text-white font-bold text-sm sm:text-base flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-cyan-400" />
-                  {currentScreenshot.title || "Production Screenshot"}
-                </h4>
-                <p className="text-slate-400 text-xs sm:text-sm mt-0.5 max-w-2xl">
-                  {currentScreenshot.caption || project.description}
-                </p>
-              </div>
-
-              {/* Multi-screenshot tabs / pills */}
+              {/* Visual Thumbnail Strip */}
               {screenshots.length > 1 && (
-                <div className="flex items-center gap-2 self-stretch sm:self-auto overflow-x-auto pb-1 sm:pb-0">
+                <div className="px-4 sm:px-6 py-3.5 bg-dark-950/80 border-t border-white/5 flex items-center gap-3 overflow-x-auto">
+                  <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider shrink-0 mr-1">
+                    Screens ({screenshots.length}):
+                  </span>
                   {screenshots.map((s, idx) => (
                     <button
                       key={idx}
                       onClick={() => setActiveScreenshotIdx(idx)}
-                      className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+                      className={`relative flex-shrink-0 w-24 sm:w-28 h-16 sm:h-20 rounded-xl overflow-hidden border-2 transition-all group ${
                         activeScreenshotIdx === idx
-                          ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-glow border border-indigo-400/30"
-                          : "bg-dark-850 text-slate-400 hover:text-white hover:bg-dark-800 border border-white/5"
+                          ? "border-cyan-400 ring-2 ring-cyan-500/40 shadow-glow"
+                          : "border-white/10 hover:border-white/30 opacity-60 hover:opacity-100"
                       }`}
+                      title={s.title}
                     >
-                      {s.title ? s.title.split("—")[0].trim() : `Screen ${idx + 1}`}
+                      <img
+                        src={s.url}
+                        alt={s.title}
+                        className="w-full h-full object-cover object-top"
+                      />
+                      <div className="absolute inset-0 bg-dark-950/20 group-hover:bg-transparent transition-colors" />
+                      <span className="absolute bottom-1 right-1 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-dark-950/90 text-white border border-white/10">
+                        {idx + 1}
+                      </span>
                     </button>
                   ))}
                 </div>
               )}
+
             </div>
-
-            {/* Visual Thumbnail Strip */}
-            {screenshots.length > 1 && (
-              <div className="px-4 sm:px-6 py-3.5 bg-dark-950/80 border-t border-white/5 flex items-center gap-3 overflow-x-auto">
-                <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider shrink-0 mr-1">
-                  Screens ({screenshots.length}):
-                </span>
-                {screenshots.map((s, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveScreenshotIdx(idx)}
-                    className={`relative flex-shrink-0 w-24 sm:w-28 h-16 sm:h-20 rounded-xl overflow-hidden border-2 transition-all group ${
-                      activeScreenshotIdx === idx
-                        ? "border-cyan-400 ring-2 ring-cyan-500/40 shadow-glow"
-                        : "border-white/10 hover:border-white/30 opacity-60 hover:opacity-100"
-                    }`}
-                    title={s.title}
-                  >
-                    <img
-                      src={s.url}
-                      alt={s.title}
-                      className="w-full h-full object-cover object-top"
-                    />
-                    <div className="absolute inset-0 bg-dark-950/20 group-hover:bg-transparent transition-colors" />
-                    <span className="absolute bottom-1 right-1 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-dark-950/90 text-white border border-white/10">
-                      {idx + 1}
-                    </span>
-                  </button>
-                ))}
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mb-16"
+          >
+            <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-dark-900 via-dark-850 to-indigo-950/40 p-10 sm:p-14 shadow-2xl flex flex-col items-center justify-center text-center relative overflow-hidden backdrop-blur-xl">
+              <div className="w-16 h-16 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-brand-indigo mb-4 shadow-glow">
+                <Globe className="w-8 h-8 text-cyan-400" />
               </div>
-            )}
-
-          </div>
-        </motion.div>
+              <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+              <p className="text-slate-400 text-sm max-w-lg mb-6 leading-relaxed">
+                Live production platform operating at <span className="text-cyan-300 font-mono">{project.links && project.links[0] ? project.links[0].url.replace(/^https?:\/\//, '').replace(/\/$/, '') : 'production'}</span>. Production interface screenshots are being updated. You can access the live service directly below.
+              </p>
+              {project.links && project.links[0] && (
+                <a
+                  href={project.links[0].url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold text-sm shadow-glow transition-all"
+                >
+                  <span>Launch Live Platform</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              )}
+            </div>
+          </motion.div>
+        )}
 
         {/* Detailed Case Study / Deep-Dive Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16">
@@ -431,18 +468,42 @@ const ProjectDetail = () => {
               </h4>
 
               <div className="space-y-3">
-                {project.links && project.links.map((link, idx) => (
-                  <a
-                    key={idx}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-between px-4 py-3 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-200 hover:text-white border border-indigo-500/30 font-semibold text-sm transition-all group"
-                  >
-                    <span>{link.label}</span>
-                    <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </a>
-                ))}
+                {project.vpnRequired && (
+                  <div className="p-3.5 rounded-xl bg-amber-950/40 border border-amber-500/35 text-xs">
+                    <div className="flex items-center gap-1.5 text-amber-300 font-semibold mb-1">
+                      <span>🇬🇧</span>
+                      UK VPN Required
+                    </div>
+                    <p className="text-amber-200/80 leading-relaxed text-[11px]">
+                      {project.vpnNotice || "This platform is geofenced to the United Kingdom under UKGC regulations. A UK VPN / IP address is required to access the live site."}
+                    </p>
+                  </div>
+                )}
+
+                {project.links && project.links.length > 0 ? (
+                  project.links.map((link, idx) => (
+                    <a
+                      key={idx}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-between px-4 py-3 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-200 hover:text-white border border-indigo-500/30 font-semibold text-sm transition-all group"
+                    >
+                      <span>{link.label}</span>
+                      <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </a>
+                  ))
+                ) : (
+                  <div className="p-3.5 rounded-xl bg-dark-900/90 border border-amber-500/25 text-xs">
+                    <div className="flex items-center gap-1.5 text-amber-400 font-semibold mb-1">
+                      <span className="w-2 h-2 rounded-full bg-amber-400" />
+                      Play Store (Archived)
+                    </div>
+                    <p className="text-slate-400 leading-relaxed">
+                      This mobile super-app was featured on Google Play Store & Telebirr Super App directory. It has concluded its commercial release and is preserved as an architectural case study.
+                    </p>
+                  </div>
+                )}
 
                 <a
                   href="https://github.com/Tadi-san"

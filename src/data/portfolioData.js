@@ -15,13 +15,23 @@ export const personalInfo = {
   github: "https://github.com/Tadi-san",
   linkedin: "https://www.linkedin.com/in/tadiwos-anegagergn-951b25256",
   resumePath: "/TadiwosAnegagregn.pdf",
-  avatar: "/hero1.png",
+  avatar: "/single.png",
+  logo: "/hero1.png",
   hackathonImage: "/togetha.jpg",
   status: "Open to High-Impact Full-Stack & ML Systems Roles",
 };
 
+// Dynamically compute years of experience from earliest professional role (06/2023 at Backos Technologies)
+export const calculateYearsOfExperience = () => {
+  const careerStart = new Date(2023, 5, 1); // June 1, 2023
+  const now = new Date();
+  const diffInYears = (now.getTime() - careerStart.getTime()) / (1000 * 60 * 60 * 24 * 365.25);
+  const years = Math.max(1, Math.floor(diffInYears));
+  return `${years}+`;
+};
+
 export const stats = [
-  { value: "4+", label: "Years Experience", description: "Building web, mobile & distributed systems" },
+  { value: calculateYearsOfExperience(), label: "Years Experience", description: "Building web, mobile & distributed systems" },
   { value: "15+", label: "Shipped Products", description: "From enterprise SaaS to ML workflows" },
   { value: "1st", label: "Place Winner", description: "Startup Ethiopia Grand Hackathon 2024" },
   { value: "78+", label: "Active Members", description: "Live on Solstice Gym SaaS (Passion Gym)" },
@@ -30,16 +40,17 @@ export const stats = [
 export const experiences = [
   {
     company: "Jadex Consulting",
-    role: "Full-Stack Developer",
+    role: "Full-Stack & Systems Developer",
     location: "London (Remote)",
     period: "09/2025 – 07/2026",
     badge: "Recent",
     bullets: [
-      "Built responsive, interactive full-stack applications using Go, Next.js, and React for high-traffic platforms.",
-      "Collaborated on PyTorch distributed training systems, implementing and debugging custom gradient-reduction steps and communication protocols.",
-      "Optimized low-level algorithms at the ATen/tensor level, translating raw computational updates into robust, deployable backend services.",
+      "Engineered high-throughput Go backend microservices for crypto gaming platforms including Tucanbit (tucanbit.io), handling real-time transactions and live game feeds.",
+      "Optimized back-office administration using Redis caching and PostgreSQL query tuning, reducing reporting bottlenecks and latency by over 70%.",
+      "Developed a flexible marketing CMS enabling campaign coordinators to deploy promotional banners, rakeback rules, and VIP reward tiers in real time.",
+      "Collaborated on PyTorch distributed training systems, implementing and debugging custom gradient-reduction steps and ATen tensor-level algorithms.",
     ],
-    skills: ["Go", "Next.js", "React", "PyTorch", "ATen API", "Distributed Training", "Docker"],
+    skills: ["Go (Golang)", "PostgreSQL", "Redis", "Next.js", "React", "PyTorch", "ATen API", "Docker"],
   },
   {
     company: "Eagle Point AI",
@@ -288,12 +299,12 @@ export const projects = [
     links: [
       { label: "Codebase / Details", url: "https://github.com/Tadi-san" },
     ],
-    image: "/smallUi.png",
+    image: "/alchemy-canvas.png",
     screenshots: [
       {
-        url: "/smallUi.png",
-        title: "Interactive Laboratory Canvas & AI Tutor",
-        caption: "Interactive virtual beaker simulation with real-time chemical reaction predictions and child-friendly AI explanations."
+        url: "/alchemy-canvas.png",
+        title: "Alchemy: Kids AI Chemistry Lab — Interactive Elemental Canvas",
+        caption: "Interactive elemental combination network (Water, Fire, Wind, Earth, Steam, Dust) with real-time reaction predictions, sound cues, discovery tracking, and child-friendly AI explanations."
       }
     ],
     overview: "Alchemy reimagines STEM education by pairing an interactive visual chemistry sandbox with a dedicated, low-latency AI companion. Children can safely mix elements and compounds in a virtual beaker while an AI tutor, powered by quantized Llama 3, explains chemical principles, validates safety bounds, and guides kids through gamified experiments in real time.",
@@ -348,42 +359,69 @@ export const projects = [
   {
     id: "sheba-super-app",
     title: "Sheba Super App",
-    subtitle: "React Native Super App with Telebirr Integration",
+    subtitle: "React Native Super App with Telebirr Integration & Micro-Mini-Apps",
     category: "Mobile & Super Apps",
     featured: true,
-    description: "Enterprise mobile super-app housing Merkato Beslke (wholesale marketplace), Melly's Fashion (e-commerce), and Arada (appointment booking for wellness services). Integrated unified Telebirr mobile wallet checkout and officially listed in Telebirr Super App mini-apps directory.",
-    tags: ["React Native", "Next.js", "TypeScript", "Node.js", "Telebirr Gateway"],
-    metrics: "3 Integrated Mini-Apps • Telebirr Super App Listed",
-    links: [
-      { label: "Architecture / Case Study", url: "https://github.com/Tadi-san" },
-    ],
-    image: "/gebeya.png",
+    description: "Enterprise mobile super-app engineered in React Native housing multiple integrated mini-apps: Merkato Beslke (wholesale B2B marketplace), Melly's Fashion (retail e-commerce), and Arada (appointment booking for wellness & spas). Integrated unified Telebirr mobile wallet checkout and officially featured in the Telebirr Super App mini-apps directory (formerly published on Google Play Store).",
+    tags: ["React Native", "Next.js", "TypeScript", "Node.js", "Telebirr Gateway", "Microfrontends", "In-App Wallet", "WebViews"],
+    metrics: "3 Integrated Mini-Apps • Telebirr Super App Listed • Play Store (Archived)",
+    links: [],
+    image: "/sheba-hub.png",
     screenshots: [
       {
-        url: "/gebeya.png",
-        title: "Super App Host Shell & Multi-Vendor Ecosystem",
-        caption: "Sheba Super App showing mini-app directory, vendor listings, in-app services, and native Telebirr payment integration."
+        url: "/sheba-hub.png",
+        title: "Sheba Super App — Mini-Apps & Digital Wallet Hub",
+        caption: "Main super app dashboard displaying in-app digital wallet ($5,001.86), mini-app launcher (Zoom Fashion, Melly's Fashion, Merkato Beslke wholesale), and daily services (Health, Mobile Top-Up, Utilities)."
+      },
+      {
+        url: "/sheba-splash.png",
+        title: "Sheba Super App — Welcome & Brand Identity",
+        caption: "Official Sheba crown splash screen ('Sheba everything you want!') welcoming users with single-sign-on onboarding."
+      },
+      {
+        url: "/sheba-profile.png",
+        title: "Sheba Super App — Member Profile & Connected Services",
+        caption: "User profile dashboard managing connected mini-app services, favourites, order history, cards & offers, multilingual language switcher, and delivery locations."
+      },
+      {
+        url: "/sheba-auth.png",
+        title: "Sheba Super App — Authentication & Registration",
+        caption: "Hardened user authentication flow with credential validation, session token encryption, and account recovery."
+      },
+      {
+        url: "/sheba-services.png",
+        title: "Sheba Super App — Financial & Daily Services Ecosystem",
+        caption: "Super app services directory featuring digital wallet management, card repayments, micro-loans, insurance, and municipal utility payments."
+      },
+      {
+        url: "/sheba-chat-tools.png",
+        title: "Sheba Super App — In-App Chat & Media Tools",
+        caption: "Integrated communication suite with in-chat camera access, file sharing, voice memos, location sharing, and peer-to-peer balance transfers."
       }
     ],
-    overview: "Sheba Super App is a comprehensive digital commerce and lifestyle ecosystem engineered for the Ethiopian consumer economy. It unifies three major independent commercial applications into a cohesive mobile shell: Merkato Beslke (wholesale B2B marketplace), Melly's Fashion (high-fashion consumer retail), and Arada (appointment bookings for spas, salons, and beauty services).",
-    challenge: "Managing multiple discrete digital businesses requires separate authentication, payments, and checkout flows, increasing user churn. Bridging web technologies (Next.js) inside a native React Native shell while complying with Telebirr's cryptographic payment specification presented significant integration challenges.",
-    solution: "Engineered a microfrontend architecture where individual mini-apps are built as performant web views loaded seamlessly within a hardened React Native host shell. Created a standardized JavaScript bridge enabling mini-apps to invoke native device capabilities and execute secure, single-tap Telebirr wallet transactions.",
+    overview: "Sheba Super App is a comprehensive digital commerce and lifestyle ecosystem engineered for the Ethiopian mobile consumer economy. Built as a high-performance React Native host container, it unifies three major independent commercial applications into a cohesive mobile experience: Merkato Beslke (wholesale B2B marketplace for mass merchants), Melly's Fashion (e-commerce apparel retail), and Arada (appointment booking for spas, salons, and wellness services). The platform was published on the Google Play Store and officially integrated into Ethio Telecom's Telebirr Super App mini-apps ecosystem.",
+    challenge: "Ethiopian digital commerce previously suffered from fragmentation where users had to download multiple separate apps with disparate login systems and conflicting payment methods. Embedding full-scale Next.js web applications into a React Native container required building a custom bidirectional JavaScript bridge for device hardware access, state persistence, and cryptographic Telebirr payment tokenization.",
+    solution: "Engineered a microfrontend architecture where individual mini-apps run as performant, responsive web modules rendered within a hardened React Native shell. Created a standardized native bridge enabling mini-apps to invoke native device capabilities (camera, geolocation, push notifications) and complete zero-friction Telebirr mobile wallet transactions with cryptographic RSA signature verification.",
     keyFeatures: [
       {
         title: "3 Independent Mini-Apps in One Shell",
-        description: "Seamlessly switches between Merkato Beslke wholesale, Melly's Fashion retail, and Arada appointment booking."
+        description: "Seamlessly switches between Merkato Beslke wholesale marketplace, Melly's Fashion consumer retail, and Arada wellness service bookings."
       },
       {
         title: "Telebirr Super App Official Listing",
-        description: "Compliant with Ethio Telecom's Telebirr Super App mini-program standards, reaching millions of active wallet holders."
+        description: "Engineered to comply with Ethio Telecom's Telebirr Super App mini-program standards, reaching millions of active digital wallet holders."
       },
       {
         title: "Bi-directional Native Bridge",
-        description: "Custom React Native bridge passing session credentials, location coordinates, and payment cryptographic tokens securely."
+        description: "Custom React Native bridge passing session credentials, location coordinates, camera access, and payment cryptographic tokens securely between webviews and native code."
       },
       {
-        title: "Zero-Friction Checkout",
-        description: "Unified Telebirr mobile wallet payment integration eliminating credit card requirements for Ethiopian consumers."
+        title: "Zero-Friction Mobile Wallet Checkout",
+        description: "Unified Telebirr mobile wallet payment integration eliminating credit card requirements for Ethiopian consumers with instant transaction confirmation."
+      },
+      {
+        title: "Integrated Social & Daily Services",
+        description: "Built-in communication suite featuring in-app chat with rich media sharing, location sharing, voice memos, and daily utility services."
       }
     ],
     architecture: [
@@ -398,19 +436,23 @@ export const projects = [
       {
         layer: "Payment Gateway Integration",
         details: "Secure Node.js backend handling RSA key pair signing, payload encryption, and Telebirr webhook verification."
+      },
+      {
+        layer: "Lifecycle & Archive Status",
+        details: "Successfully shipped to production and Google Play Store; currently preserved as an architectural showcase and codebase reference."
       }
     ],
     techStack: {
-      mobile: ["React Native", "TypeScript", "Expo / Bare Workflow"],
+      mobile: ["React Native", "TypeScript", "Expo / Bare Workflow", "WebViews Bridge"],
       web: ["Next.js", "React", "Tailwind CSS"],
-      backend: ["Node.js", "Express", "PostgreSQL"],
-      payments: ["Telebirr Super App Gateway", "RSA Encryption"]
+      backend: ["Node.js", "Express", "PostgreSQL", "REST APIs"],
+      payments: ["Telebirr Super App Gateway", "RSA-2048 Encryption", "Webhooks"]
     },
     stats: [
-      { label: "Mini-Apps", value: "3 Ecosystems", desc: "Wholesale, Fashion & Appointments" },
+      { label: "Mini-Apps", value: "3 Ecosystems", desc: "Wholesale, Fashion & Wellness" },
       { label: "Payment Rail", value: "Telebirr Native", desc: "Single-tap mobile wallet checkout" },
-      { label: "Ecosystem Status", value: "Officially Listed", desc: "Telebirr Super App mini-apps directory" },
-      { label: "Shell Architecture", value: "React Native", desc: "Hardened native container with secure bridge" }
+      { label: "Ecosystem Status", value: "Telebirr Listed", desc: "Telebirr Super App mini-apps directory" },
+      { label: "Store History", value: "Google Play", desc: "Production release (now archived)" }
     ],
     role: "Lead Mobile & Full-Stack Developer",
     timeline: "04/2024 – 06/2025",
@@ -418,254 +460,572 @@ export const projects = [
   {
     id: "arifpay-npm",
     title: "Official Arifpay Node.js SDK",
-    subtitle: "Open Source Payment Gateway Library",
+    subtitle: "Production Payment Gateway Library & Developer Documentation",
     category: "Backend & Core",
     featured: true,
-    description: "Authored and published the official npm library for Arifpay to streamline payment gateway integration, webhook verification, and digital payment facilitation for Node.js developers across Ethiopia.",
-    tags: ["Node.js", "TypeScript", "npm", "Fintech", "Payment Gateway"],
-    metrics: "Official NPM Package • Production Payment Infrastructure",
+    description: "Authored and published the official npm library for Arifpay, powering payment gateway integrations, checkout sessions, cryptographic webhook verification, and digital transactions across Ethiopian developer platforms.",
+    tags: ["Node.js", "TypeScript", "npm", "Fintech", "Payment Gateway", "HMAC-SHA256", "Developer Docs", "REST APIs"],
+    metrics: "Official NPM Package • Production Payment Infrastructure • Developer Docs Live",
     links: [
+      { label: "Developer Docs", url: "https://developer.arifpay.net/docs" },
       { label: "NPM Package", url: "https://www.npmjs.com/package/arifpay" },
       { label: "GitHub", url: "https://github.com/Tadi-san" },
     ],
-    image: "/esuk.png",
+    image: "/arifpay-docs.png",
     screenshots: [
       {
-        url: "/esuk.png",
-        title: "Arifpay SDK Architecture & Developer Experience",
-        caption: "Official Arifpay Node.js package on npm, enabling typed API interactions, automated retries, and webhook HMAC validation."
+        url: "/arifpay-docs.png",
+        title: "ArifPay Official Developer Documentation",
+        caption: "Production API reference, SDK guides, Postman collections, and sandbox environment at developer.arifpay.net/docs."
       }
     ],
-    overview: "Arifpay is a premier financial technology payment gateway licensed by the National Bank of Ethiopia. To accelerate developer adoption and establish enterprise reliability, I authored the official 'arifpay' package on npm. The library abstracts low-level cryptographic signatures, HTTP retry strategies, checkout session generation, and webhook security into an ergonomic, fully typed TypeScript API.",
-    challenge: "Integrating banking payment APIs in emerging markets is notorious for complex signature verification, inconsistent payload structures, and lack of typed documentation. Developers regularly faced critical security vulnerabilities during webhook handling.",
-    solution: "Designed and published a zero-dependency (where possible), strictly typed TypeScript library with 100% test coverage. Included helper utilities for cryptographic HMAC signature verification, idempotency token injection, and automated retry handling for network drops.",
+    overview: "Arifpay is a licensed premier financial technology payment gateway authorized by the National Bank of Ethiopia to provide multi-channel checkout, bill payments, and merchant settlement. As author of the official 'arifpay' library on npm, I engineered the primary Node.js developer integration layer that connects enterprise platforms, e-commerce applications, and startups directly to the Arifpay gateway. The SDK provides full TypeScript types, automated retries, cryptographic HMAC webhook authentication, and seamless parity with the official Arifpay Developer Documentation (developer.arifpay.net/docs).",
+    challenge: "Integrating enterprise payment gateways in emerging financial markets historically suffered from ambiguous payload contracts, inconsistent error codes, and vulnerability to replay attacks during webhook callbacks. Node.js backend engineers required an ergonomic, battle-tested library that eliminated boilerplate crypto math and abstracted HTTP authentication while providing full type safety and sandbox simulation.",
+    solution: "Architected and released the official 'arifpay' SDK on npm with 100% TypeScript coverage, zero unnecessary runtime dependencies, and strict adherence to ArifPay's production API specification. Built automated HMAC-SHA256 signature verification utilities, idempotent checkout session builders, refund handlers, and comprehensive documentation aligning with the developer portal at developer.arifpay.net/docs.",
     keyFeatures: [
       {
-        title: "Official NPM Distribution",
-        description: "Published as 'arifpay' on npm, widely utilized by Ethiopian enterprise backends and e-commerce startups."
+        title: "Official Developer Documentation Parity",
+        description: "Directly aligned with ArifPay production documentation at developer.arifpay.net/docs, supporting sandbox and live payment gateway environments."
       },
       {
         title: "Complete TypeScript Declarations",
-        description: "Full type definitions for checkout payloads, transaction statuses, refund records, and webhook payloads."
+        description: "Full type definitions for checkout payloads, transaction statuses, refund records, and webhook payloads with autocompletion."
       },
       {
         title: "Bulletproof Cryptographic Verification",
-        description: "Built-in cryptographic utilities for verifying webhook authenticity and preventing replay attacks."
+        description: "Built-in constant-time HMAC-SHA256 verification utilities for verifying webhook authenticity and preventing replay attacks."
       },
       {
         title: "Idempotent Transaction Handling",
         description: "Automatic generation and verification of idempotency keys to eliminate double-billing risks during network timeouts."
+      },
+      {
+        title: "Multi-Channel Payment Integration",
+        description: "Powers unified checkouts across Telebirr, CBE Birr, Awash Bank, mobile wallets, and domestic debit cards."
       }
     ],
     architecture: [
       {
-        layer: "SDK Core",
+        layer: "SDK Core & Type System",
         details: "Built with modern TypeScript, compiled to both CommonJS and ESM outputs for maximum compatibility across Node.js versions."
+      },
+      {
+        layer: "Developer Docs & Sandbox Parity",
+        details: "Direct alignment with developer.arifpay.net/docs, supporting sandbox mock keys, live production hosts, and Postman collections."
       },
       {
         layer: "Security & Encryption",
         details: "Utilizes native Node.js crypto module for SHA-256 and HMAC verification with constant-time equality checks."
       },
       {
-        layer: "Testing & Documentation",
+        layer: "Testing & Enterprise Hardening",
         details: "Automated Jest unit test suite covering sandbox transactions, mock webhooks, and boundary conditions."
       }
     ],
     techStack: {
-      language: ["TypeScript", "Node.js", "JavaScript"],
-      packaging: ["npm", "Rollup", "TypeScript Compiler (tsc)"],
+      language: ["TypeScript", "Node.js", "JavaScript (ESM & CJS)"],
+      distribution: ["npm Registry", "Rollup", "TypeScript Compiler (tsc)"],
       testing: ["Jest", "Supertest"],
-      security: ["Node Crypto", "HMAC-SHA256"]
+      security: ["Node Crypto", "HMAC-SHA256", "Idempotency"],
+      documentation: ["ArifPay Docs (developer.arifpay.net/docs)", "Postman Collections"]
     },
     stats: [
       { label: "NPM Status", value: "Official SDK", desc: "Published and actively distributed on npm" },
+      { label: "Developer Docs", value: "Live Portal", desc: "developer.arifpay.net/docs" },
       { label: "Type Safety", value: "100% Typed", desc: "Zero 'any' TypeScript declarations" },
-      { label: "Security", value: "HMAC Signed", desc: "Guaranteed webhook signature verification" },
-      { label: "Compatibility", value: "Node 16+", desc: "Dual CJS & ESM modern bundle" }
+      { label: "Security", value: "HMAC Signed", desc: "Guaranteed webhook signature verification" }
     ],
     role: "SDK Author & Core Maintainer",
     timeline: "2023 – Present",
   },
   {
-    id: "betzone-itvwin",
-    title: "Betzone & Itvwin High-Throughput Gaming",
-    subtitle: "Ultra-Low Latency UI & Real-Time Streaming",
+    id: "betzone",
+    title: "Betzone UK Sportsbook & Gaming",
+    subtitle: "High-Concurrency Sports Betting, Odds Streaming & Promotional Rewards Engine",
     category: "Backend & Core",
     featured: false,
-    description: "Gaming platform websites with responsive, ultra-low-latency UI tables and real-time streaming features engineered with Go backend services and WebSockets for concurrent traffic.",
-    tags: ["React", "Go", "WebSockets", "Real-Time", "High-Concurrency"],
-    metrics: "Sub-50ms live updates • Go WebSockets • High Throughput",
+    description: "UK-regulated sports betting and iGaming platform engineered for extreme concurrency. Features sub-50ms live odds updates, virtual sports, wagering promotions, and real-time bonus progress tracking via Go microservices and WebSockets. Note: Requires UK VPN to access live site.",
+    tags: ["React", "Go (Golang)", "WebSockets", "High-Concurrency", "UKGC Regulated", "Redis Pub/Sub", "Promo Engine"],
+    metrics: "Sub-50ms Live Odds • Go WebSocket Engine • 🇬🇧 UK VPN Required",
+    vpnRequired: true,
+    vpnNotice: "UK VPN required to access live site due to UK Gambling Commission regional geofencing regulations.",
     links: [
+      { label: "Live Platform (UK VPN)", url: "https://main.betzone.co.uk/" },
       { label: "GitHub Profile", url: "https://github.com/Tadi-san" },
     ],
-    image: "/single.jpg",
+    image: "/betzone-rewards.png",
     screenshots: [
       {
-        url: "/single.jpg",
-        title: "Live Game Streaming & Real-Time Table Feeds",
-        caption: "High-concurrency betting dashboard with sub-50ms odds updates, low-overhead WebSocket transport, and reactive tables."
+        url: "/betzone-rewards.png",
+        title: "Betzone — Promotions & My Rewards Engine",
+        caption: "Interactive wagering bonus tracker with dynamic progress bars (£43.00/£50.00), free bets, and daily spins."
+      },
+      {
+        url: "/betzone-promotions.png",
+        title: "Betzone — Qualifying Promotion Workflow",
+        caption: "Bet £10 Get £10 promotion flow with eligibility checks, countdown timers, and sports betting sidebar navigation."
+      },
+      {
+        url: "/betzone-boosts.png",
+        title: "Betzone — Football Boosts & Live Offers",
+        caption: "Football odds boost campaigns, daily tournament multipliers, and weekly prize wheel integrations."
+      },
+      {
+        url: "/betzone-games.png",
+        title: "Betzone — Eligible Games & Terms Matrix",
+        caption: "Compliance and game directory highlighting eligible casino titles, free bet rules, and UKGC regulatory disclaimers."
       }
     ],
-    overview: "Betzone & Itvwin are high-traffic sports gaming and live betting platforms requiring real-time odds delivery and low-latency interaction. Designed to withstand sudden spikes during major live sporting matches, the system pairs high-performance Go microservices with reactive React frontend tables.",
-    challenge: "Handling tens of thousands of simultaneous bettors during live game moments creates immense WebSocket connection churn and broadcast contention. Standard Node.js servers struggled with memory consumption and socket garbage collection pauses.",
-    solution: "Architected a lightweight Go WebSocket gateway utilizing goroutines and epoll-based socket polling. On the frontend, implemented virtualized DOM tables and binary WebSocket compression, keeping UI rendering smooth at 60 FPS even during frantic odds updates.",
+    overview: "Betzone is a premier UK-licensed online sportsbook and casino gaming operator. Built to handle sudden traffic surges during marquee English Premier League fixtures and major horse racing events, the platform delivers ultra-responsive odds feeds, interactive wagering promotions, and secure account settlements. Powered by Go backend services and reactive React components, it delivers seamless sub-50ms updates across thousands of concurrent punters.",
+    challenge: "Live sports betting produces intense bursts of concurrent WebSocket traffic whenever game events happen (goals, red cards, odds shifts). Ensuring instantaneous odds synchronization without lag or layout thrashing while complying with strict UK Gambling Commission (UKGC) regulatory standards and verification rules required a zero-compromise architectural approach.",
+    solution: "Engineered high-performance Go WebSocket microservices using epoll socket polling and goroutine fan-outs backed by Redis Pub/Sub. Built virtualized, low-latency UI tables in React that update thousands of cells smoothly at 60 FPS. Implemented a robust promotional rewards engine that tracks wagering requirements in real time.",
     keyFeatures: [
       {
-        title: "Sub-50ms Odds Delivery",
-        description: "High-performance Go pub/sub fan-out pushing live match statistics and odds with minimal network overhead."
+        title: "Sub-50ms Odds Streaming",
+        description: "High-concurrency Go pub/sub gateway pushing real-time match events and dynamic odds with minimal serialization overhead."
       },
       {
-        title: "Virtualized Real-Time Tables",
-        description: "Zero-lag React table components capable of rendering hundreds of changing odds cells without layout thrashing."
+        title: "Real-Time Wagering & Rewards Engine",
+        description: "Dynamic progress bars calculating qualifying bonus turnovers (£43/£50) with automated free bet vouchers and free spins."
       },
       {
-        title: "Graceful Reconnection Protocols",
-        description: "Client-side exponential backoff and message deduplication to maintain session integrity across flaky mobile connections."
+        title: "UKGC Compliance & Responsible Gambling",
+        description: "Built-in integrations with GamStop, BeGambleAware, deposit limits, and age/identity verification workflows."
+      },
+      {
+        title: "Virtualized Odds Tables",
+        description: "Zero-lag DOM virtualization handling rapid odds changes without browser frame drops."
       }
     ],
     architecture: [
       {
-        layer: "Go Streaming Gateway",
-        details: "Go microservice managing thousands of active concurrent WebSocket channels with minimal memory per socket."
+        layer: "Real-Time WebSocket Gateway",
+        details: "Built in Go (Golang) handling tens of thousands of active socket connections with minimal memory per channel."
       },
       {
-        layer: "Frontend Rendering",
-        details: "React single-page application utilizing lightweight reactive stores and virtualized table rows."
+        layer: "Frontend Betting Interface",
+        details: "React single-page application with lightweight state stores, virtualized odds feeds, and instant betslip recalculation."
+      },
+      {
+        layer: "Promotions & Bonus Microservice",
+        details: "Asynchronous transaction listener tracking turnover requirements and awarding instant rewards."
+      },
+      {
+        layer: "Security & Regulatory Geofencing",
+        details: "UKGC-mandated IP geolocation checking, KYC verification, and encrypted banking rails."
       }
     ],
     techStack: {
       backend: ["Go (Golang)", "WebSockets", "Goroutines", "Redis Pub/Sub"],
-      frontend: ["React", "Tailwind CSS", "Vite"],
-      infrastructure: ["Docker", "Linux VPS", "Nginx"]
+      frontend: ["React", "Tailwind CSS", "Vite", "Virtualized DOM"],
+      infrastructure: ["Docker", "Linux VPS", "Nginx", "UKGC Compliance"]
     },
     stats: [
-      { label: "Latency", value: "< 50ms", desc: "Live WebSocket odds updates" },
-      { label: "Language", value: "Go (Golang)", desc: "High-concurrency backend services" },
-      { label: "Frontend", value: "60 FPS", desc: "Virtualized real-time table rendering" },
-      { label: "Resilience", value: "Zero Drops", desc: "Deduplicated reconnection protocol" }
+      { label: "Live Latency", value: "< 50ms", desc: "Real-time WebSocket odds updates" },
+      { label: "Architecture", value: "Go (Golang)", desc: "High-concurrency streaming backend" },
+      { label: "Compliance", value: "UKGC Licensed", desc: "Regulated by Gambling Commission" },
+      { label: "Access Note", value: "UK VPN Req.", desc: "Regional IP geofencing enforced" }
     ],
-    role: "Go Backend & Frontend Real-Time Engineer",
-    timeline: "2024",
+    role: "Go Backend & Real-Time Frontend Engineer",
+    timeline: "2024 – 2026",
   },
   {
-    id: "enpath-axees",
-    title: "Enpath.ai & Axees.io",
-    subtitle: "Creator & Marketer Matching Platform",
-    category: "Full-Stack SaaS",
+    id: "itv-win",
+    title: "ITV Win Gaming & Prize Platform",
+    subtitle: "National Television Interactive Competitions, Bingo & Casino Suite",
+    category: "Backend & Core",
     featured: false,
-    description: "Marketplace connecting marketers and content creators, featuring cross-platform frontend integrations with backend profile matching algorithms.",
-    tags: ["React Native (Web & Mobile)", "Python", "Node.js", "Matching Algorithms"],
-    metrics: "Cross-Platform Web & Mobile • Algorithmic Matching",
+    description: "High-capacity interactive gaming and competition platform for ITV, the UK's largest commercial television broadcaster. Powers real-time live Bingo rooms, instant-win spins, multi-tiered jackpot draws, and television broadcast prize competitions with seamless payment rails. Note: Requires UK VPN to access live site.",
+    tags: ["React", "Node.js", "WebSockets", "Microservices", "Television Scale", "UKGC Regulated", "Bingo Engine"],
+    metrics: "UK National Broadcaster • High-Throughput Bingo • 🇬🇧 UK VPN Required",
+    vpnRequired: true,
+    vpnNotice: "UK VPN required to access live site due to UK broadcast and gaming geofencing regulations.",
     links: [
-      { label: "Case Study", url: "https://github.com/Tadi-san" },
+      { label: "Live Platform (UK VPN)", url: "https://www.itv.com/" },
+      { label: "GitHub Profile", url: "https://github.com/Tadi-san" },
     ],
-    image: "/people.webp",
+    image: "/itvwin-desktop.png",
     screenshots: [
       {
-        url: "/people.webp",
-        title: "Creator Discovery & Campaign Collaboration Hub",
-        caption: "Enpath & Axees collaboration workspace matching verified social media creators with brand marketing budgets."
+        url: "/itvwin-desktop.png",
+        title: "ITV Win — Desktop Portal & Gaming Hub",
+        caption: "Official ITV Win gaming portal featuring Prizes, Bingo, Spins, Slingo, Jackpots, and UKGC-licensed payment gateways (Visa, Mastercard)."
+      },
+      {
+        url: "/itvwin-mobile-bingo.png",
+        title: "ITV Win Mobile — Live Bingo Rooms",
+        caption: "Interactive Bingo lobby showcasing room tiers (90, 80, 30 ball), 'Get an ITV 1, 2, 3! Bag £10 Bingo Play', and flagship ITV Room."
+      },
+      {
+        url: "/itvwin-mobile-spins.png",
+        title: "ITV Win Mobile — Love Island & Instant Win",
+        caption: "Mobile gameplay promotion for ITV flagship shows ('Love Island Love in a Spin!') with wager bonus unlocks and instant-play slots."
       }
     ],
-    overview: "Enpath.ai and Axees.io constitute a collaborative marketplace bridging performance marketers with verified micro and macro-influencers. The platform streamlines outreach, deliverables tracking, escrow payments, and performance attribution across TikTok, Instagram, and YouTube.",
-    challenge: "Brands waste extensive time manually searching social media profiles that match their audience demographics, engagement ratios, and budget requirements, while creators lack centralized tools for contracting.",
-    solution: "Developed an algorithmic matching engine combining Python vector embeddings with historical audience engagement scoring. Built a unified React Native for Web and mobile application sharing 85% of codebase logic across platforms.",
+    overview: "ITV Win is the official gaming, lottery, and interactive competition platform of ITV, the UK's flagship commercial broadcaster. Complementing top television broadcasts including Love Island, This Morning, and Ant & Dec's Saturday Night Takeaway, ITV Win processes immense traffic spikes when on-air presenters prompt millions of national viewers to enter prize competitions and join synchronized live Bingo rooms.",
+    challenge: "Live on-air TV call-outs generate sudden exponential traffic waves within seconds. The platform must absorb millions of simultaneous page loads, authenticate users securely, manage ticket purchases, and broadcast synchronized live Bingo ball draws with zero jitter.",
+    solution: "Collaborated on scalable microservices with optimized WebSocket streaming for multiplayer Bingo rooms. Engineered responsive, mobile-first gaming components that maintain fluid 60 FPS animation during ball calls and bonus reveals. Implemented strict UK Gambling Commission controls and secure payment processing.",
     keyFeatures: [
       {
-        title: "Algorithmic Creator Matching",
-        description: "Vector similarity matching pairing brand creative briefs with the most relevant creator niche profiles."
+        title: "Broadcast-Scale Concurrency Handling",
+        description: "Absorbs massive sudden traffic spikes driven by national television on-air promotion with zero degradation."
       },
       {
-        title: "Unified Web & Mobile Codebase",
-        description: "Shared React Native architecture delivering native iOS/Android apps and snappy web interfaces simultaneously."
+        title: "Multiplayer Real-Time Bingo Rooms",
+        description: "Synchronized multi-tier Bingo engines (90-ball, 80-ball, 30-ball, and flagship ITV Room) with automated card marking."
       },
       {
-        title: "Escrow & Campaign Milestones",
-        description: "Structured campaign milestone releases ensuring creators are paid upon verified content delivery."
+        title: "Flagship TV Show Spin Promotions",
+        description: "Branded interactive slot and instant-win gaming tie-ins like 'Love Island Love in a Spin' with real-time wagering multipliers."
+      },
+      {
+        title: "UKGC Regulated Security & Payments",
+        description: "Integrated with Visa, Mastercard, and UKGC self-exclusion standards (GamStop, BeGambleAware) for safe entertainment."
       }
     ],
     architecture: [
       {
-        layer: "Cross-Platform UI",
-        details: "React Native and React Native Web for universal component rendering across desktop and mobile devices."
+        layer: "Real-Time Bingo Engine",
+        details: "High-speed WebSocket server coordinating synchronized number draws and multi-user room states."
       },
       {
-        layer: "Matching & Scoring Engine",
-        details: "Python FastAPI service computing demographic affinity scores and content relevance metrics."
+        layer: "Responsive Mobile & Desktop Web App",
+        details: "React frontend built for fast rendering across smartphones and desktop browsers."
+      },
+      {
+        layer: "Broadcast Ingestion & Queueing",
+        details: "Distributed caching and message queues buffering on-air competition entry spikes."
+      },
+      {
+        layer: "UK Geofencing & Payment Rails",
+        details: "Strict geolocation checks enforcing UK-only traffic with PCI-DSS compliant checkout."
+      }
+    ],
+    techStack: {
+      backend: ["Node.js", "Express", "WebSockets", "Redis", "Distributed Queues"],
+      frontend: ["React", "Tailwind CSS", "Vite", "Mobile-First PWA"],
+      compliance: ["UKGC Licensed", "GamStop Integration", "PCI-DSS"]
+    },
+    stats: [
+      { label: "Broadcaster", value: "ITV UK", desc: "UK's largest commercial network" },
+      { label: "Live Rooms", value: "90/80/30 Ball", desc: "Synchronized multiplayer Bingo" },
+      { label: "Traffic Profile", value: "On-Air Surges", desc: "Broadcast-driven traffic spikes" },
+      { label: "Access Note", value: "UK VPN Req.", desc: "Regional IP geofencing enforced" }
+    ],
+    role: "Full-Stack Real-Time Engineer",
+    timeline: "2025 – 2026",
+  },
+  {
+    id: "tucanbit",
+    title: "Tucanbit Crypto Casino & Sportsbook",
+    subtitle: "High-Throughput Go Backends, Redis/Postgres Back-Office & Marketing CMS",
+    category: "Backend & Core",
+    featured: true,
+    description: "Next-generation crypto casino and sportsbook platform built with high-performance Go backend microservices. Engineered high-throughput transaction pipelines, optimized back-office administration using Redis caching and PostgreSQL query tuning, and developed custom CMS modules for marketing campaign orchestration.",
+    tags: ["Go (Golang)", "PostgreSQL", "Redis", "Next.js", "React", "CMS", "Web3 Gaming", "High-Concurrency"],
+    metrics: "Live Global Platform • Go Backend Microservices • Redis & PostgreSQL Tuning",
+    links: [
+      { label: "Live Platform", url: "https://tucanbit.io/" },
+      { label: "GitHub Profile", url: "https://github.com/Tadi-san" },
+    ],
+    image: "/tucanbit-platform.png",
+    screenshots: [
+      {
+        url: "/tucanbit-platform.png",
+        title: "Tucanbit — Casino & Sportsbook Gaming Hub",
+        caption: "Live production lobby at tucanbit.io showing casino originals (Plinko, Mines, Aviator), sportsbook, real-time live wins feed, Web3 wallet connect, and VIP rakeback tier system."
+      }
+    ],
+    overview: "Tucanbit is a global cryptocurrency-first online gaming and sports betting ecosystem. Engineered during my tenure at Jadex Consulting, I was responsible for architecting and optimizing the core Go backend microservices that handle live transaction processing, player state management, and real-time wager settlements. Additionally, I spearheaded the back-office database optimization across Redis and PostgreSQL to eliminate reporting bottlenecks and built a dedicated CMS empowering the marketing team to deploy dynamic promotional banners, rakeback campaigns, and VIP reward tiers without code deployments.",
+    challenge: "Crypto iGaming platforms handle thousands of rapid micro-transactions per minute (bets, spins, instant withdrawals, and live multiplier calculations). The back-office administration previously suffered from slow analytical queries across millions of transactional records in PostgreSQL, causing latency spikes for administrative reporting. Furthermore, the marketing team needed rapid, autonomous control over seasonal promotional assets and bonus rules without engineering intervention.",
+    solution: "Refactored transaction-heavy endpoints into optimized Go routines with non-blocking socket broadcasts. Implemented multi-tier caching with Redis cluster caching and indexed PostgreSQL partitioned schemas, slashing back-office query latencies by over 70%. Built an intuitive marketing CMS allowing instant publishing of promotional banners, rakeback rules, and VIP tier incentives directly to the production frontend.",
+    keyFeatures: [
+      {
+        title: "High-Throughput Go Backend Microservices",
+        description: "Concurrent Go services managing wallet operations, live win tickers, and low-latency casino gameplay mechanics."
+      },
+      {
+        title: "Redis & PostgreSQL Back-Office Optimization",
+        description: "High-efficiency query caching, read-replica routing, and connection pooling reducing administrative report wait times."
+      },
+      {
+        title: "Marketing Team CMS & Content Engine",
+        description: "Purpose-built CMS interface enabling marketing coordinators to schedule banners, update promotional copy, and configure VIP club reward tiers."
+      },
+      {
+        title: "Live Wins & Real-Time Player Feeds",
+        description: "Dynamic WebSocket event stream updating live player wins, top multipliers, and active bets with sub-second responsiveness."
+      },
+      {
+        title: "Global Accessibility (No VPN Required)",
+        description: "Worldwide low-latency infrastructure optimized for global crypto bettors without regional geofencing blocks."
+      }
+    ],
+    architecture: [
+      {
+        layer: "Go Microservices Layer",
+        details: "High-speed Golang services handling bet placement, wallet balances, and game engine communication."
+      },
+      {
+        layer: "Data & Caching Infrastructure",
+        details: "Multi-layer caching via Redis for real-time leaderboards and live wins, with PostgreSQL for ACID-compliant ledger storage."
+      },
+      {
+        layer: "Marketing CMS & Back-Office",
+        details: "Custom administrative portal providing the marketing team with live campaign deployment, asset management, and user auditing."
+      },
+      {
+        layer: "Frontend Experience",
+        details: "Modern Next.js and React client featuring Web3 wallet integrations (MetaMask, Phantom), dark mode aesthetics, and live streaming feeds."
+      }
+    ],
+    techStack: {
+      backend: ["Go (Golang)", "Microservices", "REST & WebSockets", "Concurrency Patterns"],
+      database_and_caching: ["PostgreSQL", "Redis Caching", "Connection Pooling", "Query Optimization"],
+      cms_and_frontend: ["Next.js", "React", "Tailwind CSS", "Marketing CMS Tools"],
+      infrastructure: ["Docker", "Linux VPS", "Nginx", "Cloudflare CDN"]
+    },
+    stats: [
+      { label: "Live Domain", value: "tucanbit.io", desc: "Production crypto casino & sportsbook" },
+      { label: "Backend Core", value: "Go (Golang)", desc: "High-throughput concurrent services" },
+      { label: "Database", value: "Postgres + Redis", desc: "Optimized back-office performance" },
+      { label: "Access", value: "Global / No VPN", desc: "Direct worldwide accessibility" }
+    ],
+    role: "Go Backend Engineer & Systems Developer (Jadex Consulting)",
+    timeline: "2025 – 2026",
+  },
+  {
+    id: "enpath-ai",
+    title: "enPath AI Career & Education Platform",
+    subtitle: "Privacy-Preserving Multi-Agent Career Suite, Autonomous Resume Builder & Job Matching",
+    category: "AI & ML Systems",
+    featured: true,
+    description: "AI career and education planning ecosystem for students and young professionals. Features privacy-first autonomous career agents (enPath Agent, Jobs Bot, Financial Bot, Education Bot) that synthesize tailored resumes, map 10-year career pathways, and match job openings while stripping personally identifiable information (PII) before LLM inference.",
+    tags: ["React Native", "Next.js", "Python FastAPI", "LLM Agents", "Vector Embeddings", "Privacy-Preserving AI"],
+    metrics: "Privacy-Preserving LLM • Multi-Agent Career Suite • 1,000+ Students & Professionals",
+    links: [
+      { label: "Live Platform", url: "https://www.enpath.ai/" },
+      { label: "GitHub Profile", url: "https://github.com/Tadi-san" },
+    ],
+    image: "/enpath-landing.png",
+    screenshots: [
+      {
+        url: "/enpath-landing.png",
+        title: "enPath AI — Landing & Multi-Bot Ecosystem",
+        caption: "Official enPath platform at enpath.ai ('The future belongs to those who plan.') showcasing specialized bots: Financial Bot, Community Bot, Jobs Bot, Education Bot, and enSignals."
+      },
+      {
+        url: "/enpath-agent.png",
+        title: "enPath Agent — Conversational Career & Resume Engine",
+        caption: "Interactive agent interface demonstrating on-the-fly tailored resume generation ('Senior Project Manager'), job recommendations, and automatic PII data redaction."
+      }
+    ],
+    overview: "enPath is an AI-powered career, financial, and educational planning ecosystem designed for students and emerging professionals. Navigating early career choices often feels fragmented between disparate job boards, generic resume templates, and financial uncertainty. enPath unifies specialized autonomous agents (enPath Agent, Jobs Bot, Financial Bot, Education Bot, Community Bot) into a cohesive web and mobile experience that drafts tailored resumes, calculates 10-year financial projections, and identifies high-intent job openings.",
+    challenge: "Users are hesitant to share sensitive career histories, salaries, and contact details with commercial LLMs due to privacy risks. Additionally, generating context-aware resumes that adhere to applicant tracking system (ATS) benchmarks while matching real-time job openings requires multi-step agent reasoning, dynamic document generation, and low-latency token streaming.",
+    solution: "Engineered a privacy-preserving pipeline that scrubs all personally identifiable information (PII: names, phone numbers, emails, addresses) prior to LLM processing. Implemented an autonomous multi-agent orchestration layer in Python FastAPI coupled with vector embeddings for semantic job retrieval. On the frontend, built a cross-platform React Native and Next.js client delivering responsive chat workflows and live resume generation.",
+    keyFeatures: [
+      {
+        title: "Privacy-First PII Stripping Engine",
+        description: "Automatically scrubs applicant names, emails, phone numbers, and location identifiers before sending prompts to frontier LLMs, ensuring zero personal identity leakage."
+      },
+      {
+        title: "Conversational Autonomous Resume Builder",
+        description: "Generates ATS-optimized, role-tailored resumes in seconds from conversational prompts, structured experience, and PMP/logistics credentials."
+      },
+      {
+        title: "Multi-Agent Ecosystem (6 Dedicated Bots)",
+        description: "Specialized autonomous agents for jobs, financial projections, community advice, education pathways, and career signals."
+      },
+      {
+        title: "Semantic Vector Job Matching",
+        description: "Matches user skill profiles against live postings using vector similarity embeddings rather than rigid keyword searches."
+      }
+    ],
+    architecture: [
+      {
+        layer: "Privacy & Sanitization Gateway",
+        details: "Intercepts user inputs to scrub PII tokens and anonymize career histories before forwarding to LLM endpoints."
+      },
+      {
+        layer: "Agent Orchestration & Vector Retrieval",
+        details: "Python FastAPI backend managing multi-agent state machines, conversation context, and vector similarity search."
+      },
+      {
+        layer: "Document Synthesis Service",
+        details: "Headless compilation engine converting generated resume JSON schemas into exportable documents."
+      },
+      {
+        layer: "Cross-Platform Frontend",
+        details: "Next.js web application and React Native mobile client sharing business logic and conversational UI components."
+      }
+    ],
+    techStack: {
+      frontend: ["React Native", "Next.js", "React", "Tailwind CSS", "TypeScript"],
+      backend: ["Python FastAPI", "Node.js", "REST & WebSockets", "PostgreSQL"],
+      ai_and_privacy: ["Frontier LLMs", "Vector Embeddings", "PII Redaction Regex/NLP", "Multi-Agent Workflows"]
+    },
+    stats: [
+      { label: "Live Platform", value: "enpath.ai", desc: "Production career & education platform" },
+      { label: "Privacy", value: "Zero PII", desc: "Identity stripped before AI processing" },
+      { label: "Architecture", value: "6 AI Bots", desc: "Jobs, Financial, Education & Agent" },
+      { label: "Target", value: "1,000+ Users", desc: "Students & young professionals" }
+    ],
+    role: "Full-Stack & AI Systems Developer",
+    timeline: "2024 – 2025",
+  },
+  {
+    id: "axees",
+    title: "Axees.io Creator & Marketer Platform",
+    subtitle: "Algorithmic Influencer Matching, Campaign Contracts & Performance Attribution",
+    category: "Full-Stack SaaS",
+    featured: false,
+    description: "Collaborative marketplace bridging performance marketers with verified social media creators. Features algorithmic profile matching, automated campaign deliverables tracking, and escrow milestones for content partnerships across TikTok, Instagram, and YouTube.",
+    tags: ["React Native (Web & Mobile)", "Python", "Node.js", "PostgreSQL", "Matching Algorithms"],
+    metrics: "Cross-Platform Web & Mobile • Algorithmic Creator Matching • Escrow Milestones",
+    links: [
+      { label: "Live Platform", url: "https://axees.io/" },
+      { label: "GitHub Profile", url: "https://github.com/Tadi-san" },
+    ],
+    image: "",
+    screenshots: [],
+    overview: "Axees.io is a performance-driven creator collaboration platform engineered to streamline influencer marketing at scale. By replacing scattered spreadsheets and manual Instagram DMs with structured briefs, verified audience metrics, and milestone-based escrow contracts, Axees enables digital brands and marketing agencies to discover, contract, and attribute campaigns with high-impact creators.",
+    challenge: "Brands spend hours manually vetting creator audience demographics and engagement rates, often facing unreliable deliverable fulfillment and payment disputes. Creators face payment delays and lack standardized contractual frameworks.",
+    solution: "Developed an algorithmic creator-marketer matching engine combining audience affinity scoring with creator niche categorizations. Built a cross-platform React Native Web and mobile frontend sharing 85% of logic across iOS, Android, and web dashboards, paired with an escrow contract release engine.",
+    keyFeatures: [
+      {
+        title: "Algorithmic Creator Matching",
+        description: "Demographic affinity scoring pairing brand creative briefs with verified creator audience niches."
+      },
+      {
+        title: "Escrow Milestone Workflows",
+        description: "Secure campaign milestone releases ensuring creators are paid upon verified content delivery."
+      },
+      {
+        title: "Universal Web & Mobile Architecture",
+        description: "Shared React Native Web codebase delivering responsive desktop dashboards and native mobile apps."
+      }
+    ],
+    architecture: [
+      {
+        layer: "Universal Frontend",
+        details: "React Native Web for unified component rendering across mobile and desktop browsers."
+      },
+      {
+        layer: "Scoring & Matching Engine",
+        details: "Python service computing demographic affinity and creator engagement metrics."
+      },
+      {
+        layer: "Escrow & Campaign Services",
+        details: "Node.js backend managing milestone agreements, payouts, and deliverable review."
       }
     ],
     techStack: {
       frontend: ["React Native Web", "React", "TypeScript", "Tailwind CSS"],
-      backend: ["Node.js", "Python FastAPI", "PostgreSQL"],
-      matching: ["Vector Embeddings", "Audience Scoring Algorithms"]
+      backend: ["Node.js", "Python", "PostgreSQL", "REST APIs"],
+      matching: ["Audience Scoring Algorithms", "Affinity Metrics"]
     },
     stats: [
+      { label: "Domain", value: "axees.io", desc: "Creator & marketer matching platform" },
       { label: "Code Sharing", value: "85%", desc: "Shared logic across web and mobile" },
-      { label: "Platforms", value: "Universal", desc: "iOS, Android, and Web applications" },
-      { label: "Matching", value: "Vector AI", desc: "Automated demographic affinity scoring" }
+      { label: "Platform", value: "Universal", desc: "iOS, Android, and Web applications" },
+      { label: "Workflow", value: "Escrow Rails", desc: "Milestone-verified payments" }
     ],
     role: "Full-Stack & Cross-Platform Developer",
     timeline: "2024",
   },
   {
     id: "ethio-smart-homes",
-    title: "EthioSmartHomes IoT Platform",
-    subtitle: "Smart Home Automation & Hardware Control",
+    title: "Ethio Smart Home IoT Platform",
+    subtitle: "Mobile Home Automation, Energy Management & ESP32/C++ Firmware Control by EthioSmart Technology",
     category: "Full-Stack SaaS",
     featured: false,
-    description: "Smart home automation system for IoT device control bridging low-level C++ device firmware with PostgreSQL, Next.js web dashboards, and React Native mobile controllers.",
-    tags: ["Next.js", "PostgreSQL", "React Native", "Node.js", "C++", "IoT"],
-    metrics: "Hardware Integration • Real-Time Device States",
+    description: "Production smart automation platform developed by EthioSmart Technology (ethiosmart.tech) for Ethiopian homes, offices, shops, and farms. Bridges custom C++ microcontroller firmware on ESP32 boards with a high-performance React Native mobile app for sub-second lighting, appliance, climate, and security control.",
+    tags: ["React Native (Android/iOS)", "C++ Firmware", "ESP32", "MQTT", "Node.js", "IoT Automation", "Hardware Telemetry"],
+    metrics: "Sub-Second Hardware Switching • C++ ESP32 Firmware • Local & Cloud Mesh",
     links: [
-      { label: "Project Specs", url: "https://github.com/Tadi-san" },
+      { label: "Official Website", url: "https://ethiosmart.tech" },
+      { label: "GitHub Profile", url: "https://github.com/Tadi-san" },
     ],
-    image: "/selam.png",
+    image: "/ethiosmart-rooms.png",
     screenshots: [
       {
-        url: "/selam.png",
-        title: "IoT Control Hub & Hardware State Telemetry",
-        caption: "Smart home management dashboard showing active lighting circuits, climate controls, and real-time sensor streams."
+        url: "/ethiosmart-rooms.png",
+        title: "Ethio Smart Home — Room Navigation & Climate Dashboard",
+        caption: "Central mobile overview ('Hi, Tad - Ready to control your home from your phone?') showing interactive cards for Living Room, Kitchen, Bed Room, and Bath Room with climate metrics and bottom navigation (Home, Security, Settings)."
+      },
+      {
+        url: "/ethiosmart-room-controls.png",
+        title: "Ethio Smart Home — Living Room Device & Appliance Controls",
+        caption: "Granular room controller with sub-second device switching across lighting circuits (main light, side light, left/right headlights, gold/white lights), wall charger outlets, audio entertainment, and real-time temperature/humidity telemetry."
+      },
+      {
+        url: "/ethiosmart-login.png",
+        title: "Ethio Smart Home — Secure Authentication Gateway",
+        caption: "Branded EthioSmart Technology authentication interface with biometric/password login, encrypted session key management, and hardware pairing validation."
+      },
+      {
+        url: "/ethiosmart-settings.png",
+        title: "Ethio Smart Home — System Settings & EthioSmart Ecosystem",
+        caption: "System settings and company documentation at ethiosmart.tech detailing automation deployments across Ethiopian smart homes, commercial offices, shops, smart agriculture farms, and industrial automation."
       }
     ],
-    overview: "EthioSmartHomes connects physical residential hardware (smart switches, environmental sensors, door locks, and solar inverters) with a sleek digital control suite. Built to accommodate intermittent connectivity in emerging infrastructure, the system functions seamlessly both over local mesh networks and cloud remote sync.",
-    challenge: "Smart home devices in developing regions face frequent power dips and internet disruptions. Hardware firmware written in C++ needs to synchronize device state instantly with mobile apps without battery depletion or state desynchronization.",
-    solution: "Engineered low-level C++ firmware routines for ESP32 microcontrollers communicating via lightweight MQTT protocols with an edge Node.js broker. Provided an instant-response React Native mobile app and Next.js admin portal.",
+    overview: "Ethio Smart Home is a purpose-built Internet of Things (IoT) hardware automation and mobile control ecosystem developed by EthioSmart Technology (ethiosmart.tech). Tailored specifically for Ethiopian residential and commercial environments where electrical grid fluctuations and intermittent internet occur, the platform pairs custom low-power C++ firmware running on ESP32 microcontrollers with a responsive React Native mobile app. Users can seamlessly monitor temperature and humidity, toggle individual lighting circuits, activate smart charging receptacles, and manage whole-room power states both over local Wi-Fi mesh networks and secure cloud relays.",
+    challenge: "Smart home solutions in emerging markets frequently fail due to power surges, frequent brownouts, and internet downtime. Standard commercial off-the-shelf smart switches rely entirely on constant foreign cloud connectivity; when internet is dropped, users lose access to physical switches. Additionally, low-cost microcontrollers can crash or lose state synchronization during sudden voltage drops.",
+    solution: "Wrote robust C++ embedded firmware utilizing FreeRTOS tasks and non-volatile flash storage (EEPROM/NVS) on ESP32 microcontrollers to preserve relay states across power cuts. Implemented a dual-path communication protocol that defaults to ultra-fast local UDP/MQTT broadcasts over the local LAN while falling back to an encrypted cloud WebSocket broker when away from home. Designed a sleek, high-contrast dark mode React Native mobile interface with instant tactile state toggles.",
     keyFeatures: [
       {
-        title: "Low-Power C++ Device Firmware",
-        description: "Optimized firmware for ESP32 and Arduino microcontrollers with hardware interrupt handling and watchdog timers."
+        title: "Sub-Second Microcontroller Switching",
+        description: "Instantaneous physical relay triggering under 50ms over local Wi-Fi mesh networks via lightweight binary MQTT payloads."
       },
       {
-        title: "Local & Cloud Hybrid Control",
-        description: "Operates seamlessly over local Wi-Fi mesh during internet outages, syncing automatically once connectivity returns."
+        title: "Resilient Offline Mesh Functionality",
+        description: "Operates 100% reliably during local internet blackouts by discovering and controlling local ESP32 nodes directly without external WAN servers."
       },
       {
-        title: "Real-Time Telemetry & Schedules",
-        description: "Automated energy-saving routines, scheduled timer triggers, and instant push alerts for security sensor activations."
+        title: "Granular Multi-Circuit Room Management",
+        description: "Dedicated control arrays for Living Room, Kitchen, Bedroom, and Bathroom with individual control over accent lights, ceiling lights, outlets, and music."
+      },
+      {
+        title: "Real-Time Environmental Telemetry",
+        description: "Integrates DHT/BME sensors reporting live temperature and humidity metrics directly to the mobile UI."
+      },
+      {
+        title: "Non-Volatile Hardware State Recovery",
+        description: "ESP32 firmware commits circuit states to flash memory before power loss, automatically restoring exact lighting and security configurations upon power return."
       }
     ],
     architecture: [
       {
-        layer: "Embedded Firmware",
-        details: "C++ embedded software implementing MQTT clients, cryptographic hardware authentication, and non-volatile flash storage."
+        layer: "Embedded C++ Firmware Layer",
+        details: "ESP32 / ESP8266 microcontrollers running FreeRTOS with multi-threaded sensor reading, hardware interrupt pins, and watchdog timers."
       },
       {
-        layer: "Cloud & Mobile Control",
-        details: "React Native application connected to a Node.js MQTT broker and PostgreSQL database for historical logging."
+        layer: "Local Mesh & MQTT Gateway",
+        details: "Local network mDNS discovery and Mosquitto MQTT broker enabling direct offline socket control with sub-50ms latency."
+      },
+      {
+        layer: "Cloud Synchronization API",
+        details: "Node.js and WebSocket broker for remote out-of-home access, user authentication, and multi-device state synchronization."
+      },
+      {
+        layer: "Mobile Control Application",
+        details: "React Native mobile client with high-contrast dark theme, animated toggle switches, room categorization, and security views."
       }
     ],
     techStack: {
-      firmware: ["C++", "ESP-IDF / Arduino", "MQTT", "FreeRTOS"],
-      mobile: ["React Native", "TypeScript"],
-      web: ["Next.js", "PostgreSQL", "Node.js"]
+      mobile: ["React Native", "TypeScript", "Tailwind CSS / NativeWind", "Lucide Icons"],
+      firmware: ["C++", "ESP-IDF / Arduino", "FreeRTOS", "MQTT", "ESP32 / ESP8266"],
+      backend_and_broker: ["Node.js", "Express", "Mosquitto MQTT", "WebSockets", "PostgreSQL"],
+      infrastructure: ["Local Wi-Fi Mesh", "mDNS Auto-Discovery", "Docker", "Linux Edge Gateway"]
     },
     stats: [
-      { label: "Protocol", value: "MQTT", desc: "Ultra-low bandwidth hardware messaging" },
-      { label: "Firmware", value: "C++ / FreeRTOS", desc: "Embedded microcontrollers" },
-      { label: "Offline Mode", value: "Local Mesh", desc: "Guaranteed control without internet" }
+      { label: "Switch Speed", value: "< 50ms", desc: "Sub-second physical relay response" },
+      { label: "Firmware Core", value: "C++ / ESP32", desc: "Non-volatile hardware recovery" },
+      { label: "Connectivity", value: "Hybrid Mesh", desc: "100% offline local LAN resilient" },
+      { label: "Company", value: "EthioSmart", desc: "ethiosmart.tech official platform" }
     ],
-    role: "IoT Systems & Firmware Engineer",
-    timeline: "2023",
+    role: "IoT Systems Architect & Embedded Full-Stack Developer",
+    timeline: "2023 – 2024",
   },
   {
     id: "mereja-bet",

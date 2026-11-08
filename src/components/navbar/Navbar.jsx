@@ -66,9 +66,13 @@ const Navbar = () => {
               onClick={handleLogoClick}
               className="group flex items-center gap-2.5 text-white font-semibold text-lg tracking-tight"
             >
-              <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-500 p-[1px] shadow-glow">
-                <div className="w-full h-full bg-dark-950 rounded-[11px] flex items-center justify-center group-hover:bg-dark-900 transition-colors">
-                  <Terminal className="w-4 h-4 text-brand-cyan group-hover:scale-110 transition-transform" />
+              <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-500 p-[1.5px] shadow-glow">
+                <div className="w-full h-full bg-dark-950 rounded-[10px] overflow-hidden flex items-center justify-center group-hover:bg-dark-900 transition-colors">
+                  <img
+                    src="/hero1.png"
+                    alt="Tadiwos"
+                    className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform"
+                  />
                 </div>
               </div>
               <div className="flex flex-col">

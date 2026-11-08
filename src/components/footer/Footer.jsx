@@ -42,9 +42,13 @@ const Footer = () => {
               onClick={handleBrandClick}
               className="flex items-center gap-2.5 text-white font-bold text-xl group"
             >
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center p-[1px]">
-                <div className="w-full h-full bg-dark-950 rounded-[7px] flex items-center justify-center">
-                  <Terminal className="w-4 h-4 text-brand-cyan group-hover:scale-110 transition-transform" />
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center p-[1px]">
+                <div className="w-full h-full bg-dark-950 rounded-[10px] overflow-hidden flex items-center justify-center">
+                  <img
+                    src="/hero1.png"
+                    alt="Tadiwos"
+                    className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform"
+                  />
                 </div>
               </div>
               <span className="group-hover:text-brand-cyan transition-colors">Tadiwos Anegagregn</span>

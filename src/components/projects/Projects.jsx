@@ -10,7 +10,8 @@ import {
   ArrowUpRight,
   ArrowRight,
   ExternalLink,
-  Eye
+  Eye,
+  Globe
 } from "lucide-react";
 
 const categories = [
@@ -112,11 +113,21 @@ const Projects = () => {
                     onClick={() => navigateToProject(project.id)}
                     className="relative h-52 w-full overflow-hidden bg-dark-900 border-b border-white/5 cursor-pointer"
                   >
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
-                    />
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-indigo-950/70 via-dark-900 to-purple-950/50 p-6 text-center relative group-hover:scale-105 transition-transform duration-500">
+                        <div className="w-12 h-12 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-cyan-400 mb-2 shadow-glow">
+                          <Globe className="w-6 h-6" />
+                        </div>
+                        <span className="text-white font-bold text-base tracking-tight truncate max-w-full px-4">{project.title}</span>
+                        <span className="text-xs text-slate-400 font-mono mt-0.5">Live Production Platform</span>
+                      </div>
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/40 to-transparent" />
                     
                     {/* View details overlay badge on hover */}
@@ -140,6 +151,16 @@ const Projects = () => {
                         <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 backdrop-blur-md flex items-center gap-1">
                           <Sparkles className="w-3 h-3 text-amber-400" />
                           Flagship
+                        </span>
+                      </div>
+                    )}
+
+                    {/* UK VPN Badge */}
+                    {!project.featured && project.vpnRequired && (
+                      <div className="absolute top-3 right-3">
+                        <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 backdrop-blur-md flex items-center gap-1">
+                          <span>🇬🇧</span>
+                          UK VPN
                         </span>
                       </div>
                     )}
