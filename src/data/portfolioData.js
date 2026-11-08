@@ -24,7 +24,7 @@ export const stats = [
   { value: "4+", label: "Years Experience", description: "Building web, mobile & distributed systems" },
   { value: "15+", label: "Shipped Products", description: "From enterprise SaaS to ML workflows" },
   { value: "1st", label: "Place Winner", description: "Startup Ethiopia Grand Hackathon 2024" },
-  { value: "78+", label: "Active SaaS Users", description: "Live on Solstice Gym Management SaaS" },
+  { value: "78+", label: "Active Members", description: "Live on Solstice Gym SaaS (Passion Gym)" },
 ];
 
 export const experiences = [
@@ -185,76 +185,95 @@ export const projects = [
   {
     id: "solstice-gym",
     title: "Solstice Gym Management Platform",
-    subtitle: "Multi-tenant Gym SaaS & Member Ecosystem",
+    subtitle: "Hybrid 3-Tier Architecture: Cloud Member & Trainer Portals + On-Premises Local Admin",
     category: "Full-Stack SaaS",
     featured: true,
-    description: "Multi-tenant gym SaaS ecosystem supporting administrative operations and member engagement, actively serving 1 onboarded gym enterprise and 78 registered active users. Built a dual-frontend architecture with dedicated Express and Better-Auth backend microservices containerized via Docker and Nginx reverse proxying on Linux.",
-    tags: ["Vite", "React", "MongoDB", "Node.js", "TailwindCSS", "Express", "Better-Auth", "Docker", "Nginx", "Linux"],
-    metrics: "1 Onboarded Gym • 78 Active Users • Dockerized Microservices",
+    description: "Multi-tier gym management ecosystem deployed for Passion Gym (partnered work with Afro Gym in Lamberet, Addis Ababa, now rebranded to Passion Gym). Features a cloud-hosted Member Portal (gym.solsticesoft.online), a mobile-first Trainer Portal with real-time medical flags and floor tools, and a local on-premises Admin Portal running on their facility computer for offline resilience and front-desk operations.",
+    tags: ["React", "Node.js", "Express", "Better-Auth", "MongoDB", "TailwindCSS", "Docker", "Nginx", "Hybrid Architecture", "Floor PWA"],
+    metrics: "Passion Gym (Lamberet) • 78+ Active Members • 3-Tier (Member, Trainer & Local Admin)",
     links: [
-      { label: "Gym App", url: "https://gym.solsticesoft.online" },
+      { label: "Live Member Portal", url: "https://gym.solsticesoft.online" },
       { label: "Passion Portal", url: "https://passion.solsticesoft.online" },
     ],
-    image: "/realstate.png",
+    image: "/solstice-trainer-clients.png",
     screenshots: [
       {
-        url: "/realstate.png",
-        title: "Enterprise Gym Operations Dashboard",
-        caption: "Solstice administrative dashboard featuring member management, subscription renewals, session tracking, and financial analytics."
+        url: "/solstice-trainer-clients.png",
+        title: "Trainer Portal — Client Roster & Medical Alerts",
+        caption: "Personal trainer client directory showing active status (Gym/Spa), fitness goals (Gain/Lose), attendance streaks, and real-time medical alert flags (e.g. High Blood Pressure)."
+      },
+      {
+        url: "/solstice-trainer-profile.png",
+        title: "Trainer Portal — Client Profile & Health Flags",
+        caption: "Detailed member profile for trainers highlighting critical medical flags ('Under high BP medication'), biometric tabs, InBody body-composition logs, weight history, and cardio baselines."
+      },
+      {
+        url: "/solstice-trainer-tools.png",
+        title: "Trainer Portal — Floor Tools Suite",
+        caption: "Floor tools suite designed for trainers during live gym floor sessions: Rest Timer between sets, 1RM Calculator for strength estimates, Plate Loader for barbell weight math, and Cardio Equipment Logger."
+      },
+      {
+        url: "/solstice-trainer-timer.png",
+        title: "Trainer Portal — Interactive Rest Timer",
+        caption: "Active session rest timer with quick-select interval presets (30s, 45s, 60s, 90s, 2m, 3m) keeping floor workout sessions structured and on schedule."
       }
     ],
-    overview: "Solstice is an enterprise-ready, multi-tenant gym SaaS ecosystem built to modernize fitness center administration, subscription tracking, and member engagement. Operating in production with an active enterprise gym client and 78 verified daily active members, the platform delivers high reliability, automated billing lifecycle management, and real-time attendance tracking.",
-    challenge: "Gym operators frequently rely on scattered spreadsheets and paper logbooks, resulting in missed subscription renewals, unauthorized facility entries, and revenue leakage. The platform needed to isolate gym tenant data completely while maintaining zero-downtime updates and snappy response times on mobile networks.",
-    solution: "Engineered a dual-frontend architecture separated into an administrative management portal and a mobile-optimized member experience. The backend utilizes Node.js and Express microservices with Better-Auth for robust multi-tenant authorization, MongoDB for document storage, and is containerized with Docker behind an Nginx reverse proxy on Linux VPS.",
+    overview: "Solstice Gym is a multi-tier SaaS and on-premises gym management platform engineered in close partnership with Afro Gym in Lamberet, Addis Ababa (recently rebranded as Passion Gym). The platform actively powers their daily facility operations and serves 78+ registered members. Designed to solve real-world infrastructure constraints in Addis Ababa, Solstice implements a hybrid three-tier architecture: a public cloud Member Portal for self-service workouts and subscriptions, a mobile-first Trainer Portal for gym floor guidance and health monitoring, and a secure local on-premises Admin Portal operating directly on the gym's front-desk desktop for uninterrupted registration and access control during internet outages.",
+    challenge: "Operating a premier fitness center in Lamberet requires handling fluctuating internet connectivity without disrupting member check-ins, financial record-keeping, or floor training. A purely cloud-dependent admin system risks front-desk delays whenever ISP connections drop. Simultaneously, personal trainers on the gym floor needed instant mobile access to client medical conditions (such as high blood pressure) and session timers without carrying bulky paper clipboards.",
+    solution: "Architected a robust three-tier hybrid deployment: 1) Cloud Member Portal (gym.solsticesoft.online) where members view workout plans and membership statuses; 2) Cloud Trainer Portal with high-contrast dark mode tailored for gym floor smartphones, featuring instant medical alerts, InBody logs, and workout helpers; and 3) On-Premises Local Admin Portal running directly on the facility computer at Lamberet, synchronizing with the central MongoDB database while maintaining 100% offline front-desk operational readiness.",
     keyFeatures: [
       {
-        title: "Multi-Tenant Enterprise Isolation",
-        description: "Strict tenant isolation supporting customized membership tiers, billing plans, and role-based staff permissions."
+        title: "3-Tier Hybrid Architecture (Member, Trainer, Local Admin)",
+        description: "Clean separation of concerns with cloud portals for members and trainers paired with an isolated on-premises admin desktop application for front-desk reliability."
       },
       {
-        title: "Automated Subscription & Payment Tracking",
-        description: "Real-time subscription status calculation with grace period alerts, renewal notifications, and invoice generation."
+        title: "Trainer Floor Tools & Session Helpers",
+        description: "Includes quick-access Rest Timer with interval presets (30s to 3m), 1RM strength calculator, Plate Loader barbell breakdown, and cardio baseline logger."
       },
       {
-        title: "Member Check-in & Attendance Analytics",
-        description: "Fast digital check-in workflow paired with peak hour utilization metrics and member retention trends."
+        title: "Real-Time Medical Flags & Health Safety",
+        description: "Immediate visual warnings for trainers (e.g. high blood pressure medication flags) to ensure safe, customized workout regimens for every client."
       },
       {
-        title: "Dual Portal Architecture",
-        description: "Distinct, optimized portals for gym administration and member self-service (Passion Portal) deployed on dedicated subdomains."
+        title: "Biometrics & InBody Composition Tracking",
+        description: "Tracks weight history, InBody metrics, cardio baselines, and workout progression over time."
+      },
+      {
+        title: "Offline-Resilient Front-Desk Operations",
+        description: "Local facility desktop deployment guarantees zero downtime for client registrations, billing receipts, and attendance tracking regardless of local internet status."
       }
     ],
     architecture: [
       {
-        layer: "Frontend Portals",
-        details: "React single-page applications powered by Vite and Tailwind CSS for rapid loading speeds and fluid UI transitions."
+        layer: "Member Portal (Cloud Web App)",
+        details: "React SPA hosted at gym.solsticesoft.online allowing members to view attendance streaks, trainer notes, and renewal dates."
       },
       {
-        layer: "Backend Microservices",
-        details: "Modular Express.js backend services implementing Better-Auth for stateless session tokens and tenant segregation."
+        layer: "Trainer Portal (Mobile-First Web App)",
+        details: "High-contrast floor tool providing trainers with client rosters, medical precautions, InBody tracking, and rest timers."
       },
       {
-        layer: "Database Layer",
-        details: "MongoDB cluster configured with indexed schemas for rapid query lookups across members, subscriptions, and logs."
+        layer: "Admin Portal (Local On-Premises Desktop)",
+        details: "Running on the front-desk computer at Passion Gym (Lamberet) for member check-in, POS accounting, and offline stability."
       },
       {
-        layer: "DevOps & Infrastructure",
-        details: "Multi-container Docker orchestration with automated health checks and Nginx reverse proxying with SSL termination on Linux."
+        layer: "Backend & Synchronization",
+        details: "Node.js & Express microservices with Better-Auth authentication, MongoDB data storage, and Nginx reverse proxying."
       }
     ],
     techStack: {
       frontend: ["React", "Vite", "Tailwind CSS", "Lucide React"],
       backend: ["Node.js", "Express", "Better-Auth", "REST APIs"],
       database: ["MongoDB", "Mongoose"],
-      infrastructure: ["Docker", "Docker Compose", "Nginx", "Linux Ubuntu VPS"]
+      deployment: ["On-Premises Local Desktop", "Docker", "Nginx", "Linux Ubuntu VPS"]
     },
     stats: [
-      { label: "Active Enterprises", value: "1 Gym", desc: "Live commercial production deployment" },
-      { label: "Active Users", value: "78+", desc: "Daily registered members on platform" },
-      { label: "Architecture", value: "Dual Portal", desc: "Admin + Member dedicated web applications" },
-      { label: "Uptime", value: "99.9%", desc: "Containerized reliability with Nginx" }
+      { label: "Partner Gym", value: "Passion Gym", desc: "Formerly Afro Gym (Lamberet, Addis Ababa)" },
+      { label: "Active Users", value: "78+ Members", desc: "Live daily members on platform" },
+      { label: "Portals", value: "3 Dedicated", desc: "Member (Cloud), Trainer (Floor), Admin (Local)" },
+      { label: "Reliability", value: "Hybrid Offline", desc: "Local front-desk resilience during outages" }
     ],
-    role: "Lead Full-Stack Architect & DevOps Engineer",
+    role: "Lead Full-Stack Architect & Systems Developer",
     timeline: "2024 – 2026",
   },
   {

@@ -270,6 +270,37 @@ const ProjectDetail = () => {
               )}
             </div>
 
+            {/* Visual Thumbnail Strip */}
+            {screenshots.length > 1 && (
+              <div className="px-4 sm:px-6 py-3.5 bg-dark-950/80 border-t border-white/5 flex items-center gap-3 overflow-x-auto">
+                <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider shrink-0 mr-1">
+                  Screens ({screenshots.length}):
+                </span>
+                {screenshots.map((s, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveScreenshotIdx(idx)}
+                    className={`relative flex-shrink-0 w-24 sm:w-28 h-16 sm:h-20 rounded-xl overflow-hidden border-2 transition-all group ${
+                      activeScreenshotIdx === idx
+                        ? "border-cyan-400 ring-2 ring-cyan-500/40 shadow-glow"
+                        : "border-white/10 hover:border-white/30 opacity-60 hover:opacity-100"
+                    }`}
+                    title={s.title}
+                  >
+                    <img
+                      src={s.url}
+                      alt={s.title}
+                      className="w-full h-full object-cover object-top"
+                    />
+                    <div className="absolute inset-0 bg-dark-950/20 group-hover:bg-transparent transition-colors" />
+                    <span className="absolute bottom-1 right-1 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-dark-950/90 text-white border border-white/10">
+                      {idx + 1}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
+
           </div>
         </motion.div>
 
