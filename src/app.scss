@@ -2,48 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: dark;
+}
+
 html {
-  scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "DM Sans", sans-serif;
-}
-
 body {
-  background-color: #0c0c1d;
-  color: lightgray;
+  background-color: #06080d;
+  color: #e2e8f0;
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0f17;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
 }
 
-section {
-  height: 100vh;
-  width: 100vw;
-  scroll-snap-align: center;
-  overflow: hidden;
+/* Background mesh & grid utilities */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
-@mixin mobile {
-  @media (max-width: 738px) {
-    @content;
-  }
+.bg-dots-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
 }
-@mixin tablet {
-  @media (max-width: 1024px) {
-    @content;
-  }
+
+.glass-panel {
+  background: rgba(16, 22, 35, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
-@mixin desktop {
-  @media (max-width: 1366px) {
-    @content;
-  }
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-panel-hover:hover {
+  background: rgba(21, 30, 48, 0.85);
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.15);
+  transform: translateY(-3px);
+}
+
+.glow-text-cyan {
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+}
+.glow-text-indigo {
+  text-shadow: 0 0 20px rgba(99, 102, 241, 0.45);
 }

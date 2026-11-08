@@ -1,38 +1,47 @@
-import Test from "./Test";
-import "./app.scss";
-import Contact from "./components/contact/Contact";
-import Cursor from "./components/cursor/Cursor";
-import Hero from "./components/hero/Hero";
+import { RouterProvider, useRouter } from "./context/RouterContext";
 import Navbar from "./components/navbar/Navbar";
-import Parallax from "./components/parallax/Parallax";
-import Portfolio from "./components/portfolio/Portfolio";
-import Services from "./components/services/Services";
+import Hero from "./components/hero/Hero";
+import About from "./components/about/About";
+import Experience from "./components/experience/Experience";
+import Projects from "./components/projects/Projects";
+import ProjectDetail from "./components/projects/ProjectDetail";
+import Skills from "./components/skills/Skills";
+import Achievements from "./components/achievements/Achievements";
+import Contact from "./components/contact/Contact";
+import Footer from "./components/footer/Footer";
+import "./app.scss";
+
+const PortfolioContent = () => {
+  const { isProjectView } = useRouter();
+
+  return (
+    <div className="bg-dark-950 text-slate-200 min-h-screen selection:bg-indigo-500/30 selection:text-white relative overflow-x-hidden">
+      <Navbar />
+      <main id="main-content">
+        {isProjectView ? (
+          <ProjectDetail />
+        ) : (
+          <>
+            <Hero />
+            <About />
+            <Experience />
+            <Projects />
+            <Skills />
+            <Achievements />
+            <Contact />
+          </>
+        )}
+      </main>
+      <Footer />
+    </div>
+  );
+};
 
 const App = () => {
   return (
-    <div>
-      <Cursor />
-      <section id="Homepage">
-        <Navbar />
-        <Hero />
-      </section>
-      <section id="About">
-        <Parallax type="services" />
-      </section>
-      <section>
-        <Services />
-      </section>
-      <section id="Projects">
-        <Parallax type="portfolio" />
-      </section>
-      <Portfolio />
-      <section id="Contact" className=" h-full sm:h-screen">
-        <Contact />
-      </section>
-      {/* Framer Motion Crash Course */}
-      {/* <Test/>
-    <Test/> */}
-    </div>
+    <RouterProvider>
+      <PortfolioContent />
+    </RouterProvider>
   );
 };
 
