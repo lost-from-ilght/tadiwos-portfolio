@@ -140,16 +140,16 @@ const About = () => {
             <div className="lg:col-span-6 space-y-4">
               <div className="flex items-center gap-2 text-brand-cyan text-xs font-mono uppercase tracking-wider">
                 <GraduationCap className="w-4 h-4" />
-                Analytical Foundation
+                Engineering Foundation
               </div>
               <h3 className="text-2xl font-bold text-white">
-                Chemical Engineering & Self-Directed Systems Mastery
+                Software Engineering & Systems Mastery
               </h3>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                My education in Chemical Engineering at Addis Ababa Science and Technology University (AASTU) 
-                instilled strong fundamentals in numerical modeling, thermodynamics, and mathematical optimizations. 
-                I paired this academic rigor with dedicated self-taught computer science: building compilers, custom autograd extensions, 
-                and production full-stack systems from scratch since 2019.
+                My education in Software Engineering at Addis Ababa Science and Technology University (AASTU) 
+                instilled strong foundations in algorithms, software architecture, and systems engineering. 
+                I paired this academic rigor with dedicated hands-on engineering: building custom tensor kernels, 
+                high-throughput Go backends, and production full-stack systems from scratch since 2019.
               </p>
               
               <div className="pt-2 grid grid-cols-2 gap-3 text-xs font-mono text-slate-300">

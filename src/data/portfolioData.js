@@ -1212,17 +1212,17 @@ export const honors = [
 export const education = [
   {
     school: "Addis Ababa Science and Technology University (AASTU)",
-    program: "Chemical Engineering",
+    program: "Software Engineering",
     period: "06/2020 – 05/2024",
     location: "Addis Ababa, Ethiopia",
-    description: "Rigorous analytical and computational coursework in thermodynamics, process modeling, differential equations, and numerical analysis.",
+    description: "Core computer science and engineering coursework covering algorithms, data structures, distributed systems, software architecture, and systems programming.",
   },
   {
-    school: "Self-Directed Software & ML Engineering",
-    program: "Full-Stack Web, Mobile & Deep Learning Systems",
-    period: "04/2019 – Present",
-    location: "Global / Independent",
-    description: "Deep technical mastery spanning low-level C++/PyTorch systems, Go distributed microservices, React Native super-apps, and production cloud SaaS architecture.",
+    school: "Advanced Systems & ML Engineering",
+    program: "Distributed Systems, C++ Kernels & Cloud Architecture",
+    period: "2019 – Present",
+    location: "Continuous Independent Mastery",
+    description: "Deep technical mastery spanning low-level C++/PyTorch systems, Go distributed microservices, React Native super-apps, and production cloud architecture.",
   },
 ];
 
