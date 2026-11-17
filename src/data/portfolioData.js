@@ -14,7 +14,7 @@ export const personalInfo = {
   phoneDisplay: "+251-936-234-742",
   github: "https://github.com/Tadi-san",
   linkedin: "https://www.linkedin.com/in/tadiwos-anegagergn-951b25256",
-  resumePath: "/TadiwosAnegagregn1.pdf",
+  resumePath: "/Tadiwos.pdf",
   avatar: "/single.png",
   logo: "/hero1.png",
   hackathonImage: "/togetha.jpg",
