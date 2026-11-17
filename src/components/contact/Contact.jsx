@@ -13,14 +13,24 @@ import {
   Clock, 
   Sparkles, 
   AlertCircle,
-  Loader2
+  Loader2,
+  ExternalLink
 } from "lucide-react";
 
 const Contact = () => {
   const formRef = useRef();
   const [copied, setCopied] = useState(false);
+  const [copiedMessage, setCopiedMessage] = useState(false);
   const [status, setStatus] = useState("idle"); // 'idle' | 'loading' | 'success' | 'error'
   const [errorMessage, setErrorMessage] = useState("");
+  const [isAuthError, setIsAuthError] = useState(false);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(personalInfo.email);
@@ -28,10 +38,24 @@ const Contact = () => {
     setTimeout(() => setCopied(false), 2500);
   };
 
+  const handleCopyMessage = () => {
+    const formatted = `To: ${personalInfo.email}\nSubject: ${formData.subject || "Portfolio Collaboration"}\n\nHi Tadiwos,\n\n${formData.message}\n\nFrom: ${formData.name}\nEmail: ${formData.email}`;
+    navigator.clipboard.writeText(formatted);
+    setCopiedMessage(true);
+    setTimeout(() => setCopiedMessage(false), 2500);
+  };
+
+  const mailtoUrl = `mailto:${personalInfo.email}?subject=${encodeURIComponent(
+    formData.subject || `Inquiry from ${formData.name || "Portfolio Visitor"}`
+  )}&body=${encodeURIComponent(
+    `Hi Tadiwos,\n\n${formData.message || "[Type your message here]"}\n\nBest regards,\n${formData.name || "[Your Name]"}\n${formData.email || "[Your Email]"}`
+  )}`;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setStatus("loading");
     setErrorMessage("");
+    setIsAuthError(false);
 
     emailjs
       .sendForm(
@@ -43,14 +67,27 @@ const Contact = () => {
       .then(
         () => {
           setStatus("success");
+          setFormData({ name: "", email: "", subject: "", message: "" });
           if (formRef.current) formRef.current.reset();
         },
         (error) => {
-          console.error("EmailJS error:", error);
+          console.error("EmailJS transmission error:", error);
+          const rawError = String(error?.text || error?.message || error || "");
+          const isGrantError = rawError.toLowerCase().includes("invalid grant") || rawError.toLowerCase().includes("reconnect");
+
           setStatus("error");
-          setErrorMessage(
-            "Direct transmission failed. Please email me directly at " + personalInfo.email
-          );
+          setIsAuthError(isGrantError);
+          if (isGrantError) {
+            setErrorMessage(
+              "EmailJS Gmail service authorization has expired ('Invalid grant'). Please reconnect your Gmail account in the EmailJS dashboard, or use the direct email button below."
+            );
+          } else {
+            setErrorMessage(
+              rawError
+                ? `Direct transmission failed: ${rawError}. Please send via your email app below.`
+                : `Direct transmission failed. Please email me directly at ${personalInfo.email}`
+            );
+          }
         }
       );
   };
@@ -216,14 +253,31 @@ const Contact = () => {
           {/* Right Column: Interactive Contact Form */}
           <div className="lg:col-span-7">
             <div className="p-8 sm:p-10 rounded-3xl glass-panel border border-white/10 shadow-card">
-              <h3 className="text-2xl font-bold text-white mb-2">
-                Send a Direct Message
-              </h3>
+              <div className="flex items-start justify-between gap-4 mb-2 flex-wrap">
+                <h3 className="text-2xl font-bold text-white">
+                  Send a Direct Message
+                </h3>
+                <a
+                  href={mailtoUrl}
+                  className="inline-flex items-center gap-1.5 text-xs text-brand-cyan hover:text-cyan-300 font-mono underline underline-offset-4 transition-colors"
+                >
+                  <span>Open in Mail App</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
               <p className="text-slate-400 text-sm mb-6">
                 Fill out the form below and it will be delivered directly to my inbox.
               </p>
 
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+                {/* Hidden alias fields for EmailJS template flexibility */}
+                <input type="hidden" name="from_name" value={formData.name} />
+                <input type="hidden" name="name" value={formData.name} />
+                <input type="hidden" name="reply_to" value={formData.email} />
+                <input type="hidden" name="from_email" value={formData.email} />
+                <input type="hidden" name="to_email" value={personalInfo.email} />
+                <input type="hidden" name="to_name" value={personalInfo.name} />
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">
@@ -233,6 +287,8 @@ const Contact = () => {
                       type="text"
                       name="user_name"
                       required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Jane Doe"
                       className="w-full px-4 py-3 rounded-xl bg-dark-900/90 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-sm transition-colors"
                     />
@@ -246,6 +302,8 @@ const Contact = () => {
                       type="email"
                       name="user_email"
                       required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="jane@company.com"
                       className="w-full px-4 py-3 rounded-xl bg-dark-900/90 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-sm transition-colors"
                     />
@@ -259,6 +317,8 @@ const Contact = () => {
                   <input
                     type="text"
                     name="subject"
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     placeholder="ML Systems Collaboration / Full-Stack Project"
                     className="w-full px-4 py-3 rounded-xl bg-dark-900/90 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-sm transition-colors"
                   />
@@ -272,6 +332,8 @@ const Contact = () => {
                     name="message"
                     required
                     rows={5}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Hi Tadiwos, I'd like to discuss a project..."
                     className="w-full px-4 py-3 rounded-xl bg-dark-900/90 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-sm transition-colors resize-none"
                   />
@@ -286,9 +348,47 @@ const Contact = () => {
                 )}
 
                 {status === "error" && (
-                  <div className="p-4 rounded-xl bg-red-950/60 border border-red-500/40 text-red-300 text-sm flex items-center gap-2">
-                    <AlertCircle className="w-5 h-5 text-red-400 shrink-0" />
-                    <span>{errorMessage}</span>
+                  <div className="p-5 rounded-2xl bg-red-950/50 border border-red-500/40 text-red-200 text-sm space-y-3">
+                    <div className="flex items-start gap-2.5">
+                      <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-semibold text-red-200">{errorMessage}</p>
+                        {isAuthError && (
+                          <p className="text-xs text-red-300/80 mt-1">
+                            Tip: To re-enable automated delivery, sign in to your EmailJS dashboard and click &quot;Reconnect Account&quot; under your Gmail email service.
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="pt-2 border-t border-red-500/20 flex flex-wrap items-center gap-2.5">
+                      <a
+                        href={mailtoUrl}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white text-dark-950 font-semibold text-xs hover:bg-slate-200 transition-colors shadow-sm"
+                      >
+                        <Mail className="w-3.5 h-3.5 text-indigo-600" />
+                        <span>Send via Email Client</span>
+                        <ExternalLink className="w-3 h-3 text-slate-500" />
+                      </a>
+
+                      <button
+                        type="button"
+                        onClick={handleCopyMessage}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-dark-900 border border-white/20 text-white font-medium text-xs hover:bg-dark-800 transition-colors"
+                      >
+                        {copiedMessage ? (
+                          <>
+                            <Check className="w-3.5 h-3.5 text-emerald-400" />
+                            <span>Copied Formatted Text!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-3.5 h-3.5" />
+                            <span>Copy Message</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
                   </div>
                 )}
 
