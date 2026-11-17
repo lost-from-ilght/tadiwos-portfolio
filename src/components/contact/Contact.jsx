@@ -60,7 +60,7 @@ const Contact = () => {
     emailjs
       .sendForm(
         "service_znyycff",
-        "template_u77ykui",
+        "template_umicsha",
         formRef.current,
         "boc-gnOhvMv6uNHWN"
       )
